@@ -10,10 +10,9 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class for Servlet: DBToucher
  *
  */
-public class DBToucher extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet 
+public class DBServlet extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet 
 {
-	static final long serialVersionUID = 1L;
-	public DBToucher() { super(); }
+	public DBServlet() { super(); }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { }
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
@@ -31,10 +30,12 @@ public class DBToucher extends javax.servlet.http.HttpServlet implements javax.s
 		if(type.equalsIgnoreCase("Grand"))
 		{
 			location = "Austin, Room 213"; id = "180582087"; condition = "Good";
+			System.out.println(location + " " + id + " " + condition);
 		} 
 		else if(type.equalsIgnoreCase("Accordian"))
 		{
 			location = "Taylor, Room 123"; id = "180582087"; condition = "Fair";
+			System.out.println(location + " " + id + " " + condition);
 		} 
 		else{ location = "type Number not found"; }
 		String result = "<Pianos>";
@@ -42,6 +43,7 @@ public class DBToucher extends javax.servlet.http.HttpServlet implements javax.s
 		result += "<id>" +id + "</id>";
 		result += "<condition>" +condition + "</condition>";
 		result += "</Piano>"; result += "</Pianos>";
+		System.out.println("We ain't got no pianos!"	);
 		return result;
 	}
 }
