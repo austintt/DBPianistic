@@ -1,6 +1,6 @@
 		var request; function getInfo(){
 			var type = document.getElementById("type").value;
-			var url = "http://localhost:8080/DBServlet?type="+type;
+			var url = "http://localhost:8080/DBPianistic/Test?type="+type;
 			if(window.ActiveXObject){ request = new ActiveXObject("Microsoft.XMLHTTP"); }
 			else if(window.XMLHttpRequest){ request = new XMLHttpRequest(); } request.onreadystatechange = showResult;
 			request.open("POST",url,true);

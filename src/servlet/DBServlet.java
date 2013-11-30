@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class DBServlet extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet 
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public DBServlet() { super(); }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { }
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
