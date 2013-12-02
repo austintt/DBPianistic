@@ -9,3 +9,13 @@ table.tablesorter thead {
 table.tablesorter thead tr th:hover {
   background-color: #f5f5f5;
 }
+
+.panel-primary > .panel-heading {
+color: #ffffff;
+background-color: #3c3c3c;
+border-color: #3c3c3c;
+}
+
+.panel-primary {
+border-color: #3c3c3c;
+}
