@@ -14,6 +14,8 @@ public class DataInteract
 	 * DESC: Insert an item into the piano table. All parameters must be used and have valid data.
 	 * @param pBYUIPianoID, pMakeID, pModelID, pTypeID, pMfgSerial, pYear, pAge, pBuildingID
 	 *        pRoomNumber, pRoomTypeID, pConditionID, pCost.
+	 *        
+	 *        Each parameter maps to a column in the piano table and is named accordingly
 	 * 
 	 *
 	 */
