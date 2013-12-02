@@ -1,4 +1,5 @@
 package servlet;
+import java.sql.*;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -24,6 +25,8 @@ import javax.servlet.http.HttpServletResponse;
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("This is from the server!");
+		DataToucher querydb = new DataToucher();
+		querydb.run();
 	}  	
 	
 	/* (non-Java-doc)
