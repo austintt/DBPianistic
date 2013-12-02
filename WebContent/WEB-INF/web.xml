@@ -19,4 +19,24 @@
     <servlet-name>DBToucher</servlet-name>
     <url-pattern>/DBToucher</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DBServlet</display-name>
+    <servlet-name>DBServlet</servlet-name>
+    <servlet-class>servlet.DBServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DBServlet</servlet-name>
+    <url-pattern>/DBServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Test</display-name>
+    <servlet-name>Test</servlet-name>
+    <servlet-class>servlet.Test</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Test</servlet-name>
+    <url-pattern>/Test</url-pattern>
+  </servlet-mapping>
 </web-app>
