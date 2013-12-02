@@ -6,6 +6,10 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="var" path="JAVA_SQL"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="src/servlet/sqlite-jdbc-3.7.15-M1.jar"/>
+=======
+	<classpathentry kind="lib" path="lib/sqlite-jdbc-3.7.15-M1.jar"/>
+>>>>>>> c2be2bb88177aa3fe1b80230091075fe6b6c0a09
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
