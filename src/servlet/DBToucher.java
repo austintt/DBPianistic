@@ -26,9 +26,40 @@ import javax.servlet.http.HttpServletResponse;
 	 * @see javax.servlet.http.HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//response.setContentType("application/json");
+				response.setContentType("text/plain");
+				String type = request.getParameter("type");
+				PrintWriter out = response.getWriter();
+				out.println(getResult(type));
+				
 		System.out.println("This is from the server!");
-		DataToucher querydb = new DataToucher();
-		querydb.run();
+		
+		public String getResult(String type)
+		{
+			String location = "";
+			String id = "";
+			String condition = "";
+			if(type.equalsIgnoreCase("Grand"))
+			{
+				location = "Austin, Room 213"; id = "180582087"; condition = "Good";
+				System.out.println(location + " " + id + " " + condition);
+			} 
+			else if(type.equalsIgnoreCase("Accordian"))
+			{
+				location = "Taylor, Room 123"; id = "180582087"; condition = "Fair";
+				System.out.println(location + " " + id + " " + condition);
+			} 
+			else{ location = "type Number not found"; }
+			String result = "<Pianos>";
+			result += "<Piano>"; result += "<location>" + location + "</location>";
+			result += "<id>" +id + "</id>";
+			result += "<condition>" +condition + "</condition>";
+			result += "</Piano>"; result += "</Pianos>";
+			System.out.println("We ain't got no pianos!"	);
+			return result;
+		}
+//		DataToucher querydb = new DataToucher();
+//		querydb.run();
 	}  	
 	
 	/* (non-Java-doc)
