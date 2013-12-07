@@ -947,7 +947,7 @@ public class DataInteract
 		System.out.println("Delete operation done successfully");
 	}
 
-	public void pianoDumpQuery()
+	public List<Piano> pianoDumpQuery()
 	{
 		Connection c = null;
 		Statement stmt = null;
@@ -957,6 +957,7 @@ public class DataInteract
 			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
+			List<Piano> pianoData = new ArrayList<Piano>();
 
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery( "SELECT p.byui_piano_id "
@@ -1007,10 +1008,18 @@ public class DataInteract
 				System.out.println( "condition_text = " + condition_text );
 				System.out.println( "cost = " + cost );         
 				System.out.println();
+
+				pianoData.add(new Piano(piano_sk, byui_piano_id, make_id, model_id, 
+						                type_id, mfg_serial, year, building_id, room_number, 
+						                room_type_id, condition_id, cost));
+
+			
 			}
 			rs.close();
 			stmt.close();
 			c.close();
+			
+			return pianoData;
 		} 
 		catch (Exception e) 
 		{
@@ -1018,6 +1027,7 @@ public class DataInteract
 			System.exit(0);
 		}
 		System.out.println("Operation done successfully");
+		return null;
 	}
 	
 	public void pianoServiceHistoryDumpQuery()
@@ -1392,7 +1402,7 @@ public class DataInteract
 		return null;
 	}
 
-	public static void main( String args[] )
+	public static void main(String args[])
 	{
 		DataInteract dataInt = new DataInteract(); 
 
