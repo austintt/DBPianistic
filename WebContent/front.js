@@ -1,18 +1,67 @@
-		var request; function getInfo(){
-			var type = document.getElementById("type").value;
-			var url = "http://localhost:8080/DBPianistic/DBServlet?type="+type;
-			if(window.ActiveXObject){ request = new ActiveXObject("Microsoft.XMLHTTP"); }
-			else if(window.XMLHttpRequest){ request = new XMLHttpRequest(); } request.onreadystatechange = showResult;
-			request.open("POST",url,true);
-			request.send();
-		}
-	function showResult(){
-		if(request.readyState == 4){
-		var response = request.responseXML;
-		var Pianos = response.getElementsByTagName("Piano");
-		var Piano = Pianos[0];
-		document.getElementById("Location1").innerHTML = student.getElementsByTagName("Locaiton")[0].text;
-		document.getElementById("ID1").innerHTML = student.getElementsByTagName("ID")[0].text;
-		document.getElementById("Condition1").innerHTML = student.getElementsByTagName("Condition")[0].text;
-		}
-	}
+
+ var localCache = function () {
+       //TODO: Add some more cross-browser stuff here.
+       var cache = window.sessionStorage;
+
+       /**
+        * Stores the value into the cache.  Will convert objects to strings.
+        * key - a string value
+        * value - string or object.  If object, it is converted to string.
+        */
+       var save = function (key, value) {
+           if (typeof key !== "string")
+           {
+               throw "Error: Key must be a string";
+           }
+           if (typeof value === 'object')
+           {
+               if (value instanceof Date)
+               {
+                   value = value.toString();
+               }
+               else
+               {
+                   value = JSON.stringify(value);
+               }
+           }
+           cache.setItem(key, value);
+       };
+
+       /**
+        * Retrieves a value from the cache.
+        * key - string value
+        * type - optional parameter.  If it equals "object" a conversion to
+        *        object will occur. "date" will convert it to a JS Date object.
+        */
+       var get = function (key, type) {
+           if (typeof key !== "string")
+           {
+               throw "Error: Key must be a string";
+           }
+           if ((typeof type !== "undefined") && (type === "object"))
+           {
+               return JSON.parse(cache.getItem(key));
+           }
+           if ((typeof type !== "undefined") && (type === "date"))
+           {
+               return new Date(cache.getItem(key));
+           }
+           return cache.getItem(key);
+       };
+
+       return {
+           save:save,
+           get:get
+       };
+   };
+
+var getInfo = function()
+{	
+	$.getJSON("http://localhost:8080/DBPianistic2/DBServlet", null, function(data, textStatus, xhr){
+//		console.log(data);
+		localCache().save("piano", data);
+		localCache().get("piano", "object");
+	});
+};
+
+	
