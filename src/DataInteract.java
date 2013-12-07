@@ -5,6 +5,8 @@ import java.util.List;
 public class DataInteract 
 {
 
+	String dataSource =  "jdbc:sqlite::test.db";
+	
 	public DataInteract()
 	{
 		//Place holder constructor, there are no actual member variables. 
@@ -20,10 +22,10 @@ public class DataInteract
 	 *		  Each parameter maps to a column in the piano table and is named accordingly
 	 *
 	 */
-		public void insertPiano(int pBYUIPianoID, int pMakeID, int pModelID,
-			int pTypeID, String pMfgSerial, int pYear, 
-			int pBuildingID, int pRoomNumber, 
-			int pRoomTypeID, int pConditionID, float pCost)
+	public void insertPiano(int pBYUIPianoID, int pMakeID, int pModelID,
+			                int pTypeID, String pMfgSerial, int pYear, 
+			                int pBuildingID, int pRoomNumber, 
+			                int pRoomTypeID, int pConditionID, float pCost)
 	{
 		Connection c = null;
 		Statement stmt = null;
@@ -35,8 +37,30 @@ public class DataInteract
 			System.out.println("Opened database successfully");
 			stmt = c.createStatement();
 
-			String sql = "INSERT INTO PIANO (byui_piano_id, make_id, model_id, type_id, mfg_serial, year, age, building_id, room_number, room_type_id, condition_id, cost) "
-					+    "VALUES (" + pBYUIPianoID + "," + pMakeID + "," + pModelID + "," + pTypeID + "," + pMfgSerial + "," + pYear + "," + pBuildingID + "," + pRoomNumber + "," + pRoomTypeID + "," + pConditionID + "," + pCost + ");";
+			String sql = "INSERT INTO "
+					   + "PIANO "
+					   + "( byui_piano_id"
+					   + ", make_id"
+					   + ", model_id"
+					   + ", type_id"
+					   + ", mfg_serial"
+					   + ", year"
+					   + ", building_id"
+					   + ", room_number"
+					   + ", room_type_id"
+					   + ", condition_id"
+					   + ", cost) "
+					   + "VALUES (" + pBYUIPianoID + "," 
+					                + pMakeID + "," 
+					                + pModelID + "," 
+					                + pTypeID + "," 
+					                + pMfgSerial + "," 
+					                + pYear + "," 
+					                + pBuildingID + "," 
+					                + pRoomNumber + "," 
+					                + pRoomTypeID + "," 
+					                + pConditionID + "," 
+					                + pCost + ");";
 			System.out.println("About to execute statement: " + sql);
 
 			stmt.executeUpdate(sql);
@@ -54,29 +78,30 @@ public class DataInteract
 
 
 
-		/**
-		 * DESC: Update an item in the piano table. All parameters must be used and have valid data.
-		 * @param pColumn, pValue, pPrimaryKeyValue
-		 *        
-		 * 		  pComumn          -- name of the column to be updated.
-		 * 		  pValue           -- value to be inserted
-		 *        pPrimaryKeyValue -- select the row in the table where the value will be inserted
-		 *		  
-		 *		  //TODO: Determine whether or not update method is really needed
-		 */
-	public void updatePiano(String pColumn, String pValue, int pPrimaryKeyValue)
+	/**
+	 * DESC: Update an item in the piano table. All parameters must be used and have valid data.
+	 * @param pColumn, pValue, pPrimaryKeyValue
+	 *        
+	 * 		  pComumn          -- name of the column to be updated.
+	 * 		  pValue           -- value to be inserted
+	 *        pPrimaryKeyValue -- select the row in the table where the value will be inserted
+	 *		  
+	 *		  //TODO: Determine whether or not update method is really needed
+	 */
+	public void updatePiano(String pColumn, String pValue, int pByuiPianoId)
 	{
 		Connection c = null;
 		Statement stmt = null;
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
 			stmt = c.createStatement();
-			String sql = "UPDATE piano set " + pColumn + " = " + pValue + " where " +  "piano_sk =" + pPrimaryKeyValue+ ";";
+			String sql = "UPDATE piano "
+					   + "SET " + pColumn + " = " + pValue + " where " +  "byui_piano_id =" + pByuiPianoId + ";";
 			System.out.println("About to execute statement: " + sql);
 			stmt.executeUpdate(sql);
 			c.commit();
@@ -110,7 +135,7 @@ public class DataInteract
 		try
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
@@ -149,12 +174,34 @@ public class DataInteract
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 			stmt = c.createStatement();
-			String sql = "INSERT INTO piano_service_history (byui_piano_id, date_of_service, action_performed, service_notes, next_service_date, action_performed_by, future_service_notes, previous_building_if_moved, previous_room_if_moved, current_relative_humidity, current_relative_temperature)"
-					+ "VALUES (" + pByuiPianoId + "," + pDateOfService + "," + pActionPerformed + "," + pServiceNotes + "," + pNextServiceDate + "," + pActionPerformedBy + "," + pFutureServiceNotes + "," + pPreviousBuildingIfMoved + "," + pPreviousRoomIfMoved + "," + pCurrentRelativeHumidity + "," + pCurrentRelativeTemperature + ");";
+			String sql = "INSERT INTO "
+					   + "piano_service_history "
+					   + "( byui_piano_id"
+					   + ", date_of_service"
+					   + ", action_performed"
+					   + ", service_notes"
+					   + ", next_service_date"
+					   + ", action_performed_by"
+					   + ", future_service_notes"
+					   + ", previous_building_if_moved"
+					   + ", previous_room_if_moved"
+					   + ", current_relative_humidity"
+					   + ", current_relative_temperature)"
+					   + "VALUES (" + pByuiPianoId + "," 
+					                + pDateOfService + "," 
+					                + pActionPerformed + "," 
+					                + pServiceNotes + "," 
+					                + pNextServiceDate + "," 
+					                + pActionPerformedBy + "," 
+					                + pFutureServiceNotes + "," 
+					                + pPreviousBuildingIfMoved + "," 
+					                + pPreviousRoomIfMoved + "," 
+					                + pCurrentRelativeHumidity + "," 
+					                + pCurrentRelativeTemperature + ");";
 			System.out.println("About to execute statement: " + sql);
 
 			stmt.executeUpdate(sql);
@@ -188,7 +235,7 @@ public class DataInteract
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
@@ -224,7 +271,7 @@ public class DataInteract
 		try
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
@@ -260,7 +307,7 @@ public class DataInteract
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 			stmt = c.createStatement();
@@ -299,7 +346,7 @@ public class DataInteract
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
@@ -334,7 +381,7 @@ public class DataInteract
 		try
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
@@ -371,7 +418,7 @@ public class DataInteract
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 			stmt = c.createStatement();
@@ -410,7 +457,7 @@ public class DataInteract
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
@@ -446,7 +493,7 @@ public class DataInteract
 		try
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
@@ -481,7 +528,7 @@ public class DataInteract
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 			stmt = c.createStatement();
@@ -518,7 +565,7 @@ public class DataInteract
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
@@ -555,7 +602,7 @@ public class DataInteract
 		try
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
@@ -590,7 +637,7 @@ public class DataInteract
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 			stmt = c.createStatement();
@@ -628,7 +675,7 @@ public class DataInteract
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
@@ -663,7 +710,7 @@ public class DataInteract
 		try
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
@@ -700,7 +747,7 @@ public class DataInteract
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 			stmt = c.createStatement();
@@ -737,7 +784,7 @@ public class DataInteract
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
@@ -772,7 +819,7 @@ public class DataInteract
 		try
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
@@ -808,7 +855,7 @@ public class DataInteract
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 			stmt = c.createStatement();
@@ -845,7 +892,7 @@ public class DataInteract
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
@@ -880,7 +927,7 @@ public class DataInteract
 		try
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
@@ -907,7 +954,7 @@ public class DataInteract
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
@@ -980,7 +1027,7 @@ public class DataInteract
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
@@ -1045,7 +1092,7 @@ public class DataInteract
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
@@ -1078,7 +1125,7 @@ public class DataInteract
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
@@ -1113,7 +1160,7 @@ public class DataInteract
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
@@ -1146,7 +1193,7 @@ public class DataInteract
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
@@ -1179,7 +1226,7 @@ public class DataInteract
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
@@ -1212,7 +1259,7 @@ public class DataInteract
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
@@ -1246,7 +1293,7 @@ public class DataInteract
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 
@@ -1351,7 +1398,7 @@ public class DataInteract
 
 		//dataInt.insertPiano(43250, 1, 1, 1, "'A80200'", 2002, 21, 120, 3, 2, 1500.0f);
 		//dataInt.insertPianoServiceHistory(43250, "'2013-11-30 13:00:00'", "'Pedel Change'", "'Piano seemed out of tune, needs tuning'", "'2013-12-30'", "'Armstrong, Brian'", "'Needs Tuning'", 12, 105, 30, 70);
-		//dataInt.updatePiano("'Age'", "'17'", 3);
+		//dataInt.updatePiano("'Year'", "'2000'", 101554);
 		//dataInt.deletePiano(43250);
 		//dataInt.updatePianoServiceHistory("'action_performed_by'", "'Austin Tooley'", 1);
 		//dataInt.insertPianoServiceHistory(43250, "'2013-12-01 11:00:00'", "'Tuning'", "'Tuning successful'", "'2014-1-15'", "'Heyen, Kenneth'", "'Replace Pedels'", 12, 105, 30, 70);
