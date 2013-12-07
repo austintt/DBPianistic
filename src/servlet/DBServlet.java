@@ -1,28 +1,27 @@
 package servlet;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
 
 /**
  * Servlet implementation class for Servlet: DBToucher
  *
  */
-public class DBServlet extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet 
+public class DBServlet extends HttpServlet
 {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	public DBServlet() { super(); }
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException 
+	{
 		//response.setContentType("application/json");
 		response.setContentType("text/plain");
 		String type = request.getParameter("type");
 		PrintWriter out = response.getWriter();
 		out.println(getResult(type));
+		
 		public String getResult(String type)
 		{
 			String location = "";
