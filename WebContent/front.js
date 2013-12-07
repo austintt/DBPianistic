@@ -1,4 +1,3 @@
-
  var localCache = function () {
        //TODO: Add some more cross-browser stuff here.
        var cache = window.sessionStorage;
@@ -63,5 +62,12 @@ var getInfo = function()
 		localCache().get("piano", "object");
 	});
 };
+
+function dbController($scope)
+{
+  $scope.pianos = localCache().get("piano", "object");
+  console.log($scope.pianos);
+  $scope.test = "hey!";
+}
 
 	
