@@ -1204,7 +1204,11 @@ public class DataInteract
 
 				pianoData.add(new Piano(piano_sk, byui_piano_id, make_id, model_id, 
 						                type_id, mfg_serial, year, building_id, room_number, 
-						                room_type_id, condition_id, cost));
+						                room_type_id, condition_id, cost, date_of_service,
+						                action_performed, service_notes, action_performed_by,
+						                future_service_notes, previous_building_if_moved,
+						                previous_room_if_moved, current_relative_temperature,
+						                current_relative_humidity));
 
 			
 			}

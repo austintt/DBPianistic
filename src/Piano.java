@@ -13,6 +13,16 @@ public class Piano
 	String room_type_text; 
 	int condition_text;    
 	float cost;
+	String dateOfService;
+	String actionPerformed;
+	String serviceNote;
+	String nextServiceDate;
+	String actionPerformedBy;
+	String futureServiceNotes;
+	String previousBuildingIfMoved;
+	String previousRoomIfMoved;
+	int currentRelativeHumidity;
+	int currentRelativeTemperature;
 	
 	Piano(int pByui_piano_id,
 			String pMake_name,
@@ -25,20 +35,40 @@ public class Piano
 			int pRoom_number,
 			String pRoom_type_text,
 			int pCondition_text,
-			float pCost)
+			float pCost,
+			String pDateOfService,
+			String pActionPerformed,
+			String pServiceNote,
+			String pNextServiceDate,
+			String pActionPerformedBy,
+			String pFutureServiceNotes,
+			String pPreviousBuildingIfMoved,
+			String pPreviousRoomIfMoved,
+			int pCurrentRelativeHumidity,
+			int pCurrentRelativeTemperature)
 	{
-		byui_piano_id  = pByui_piano_id;
-		make_name 		= pMake_name;
-		model_name 		= pModel_name;     
-		type_text 		= pType_text;      
-		mfg_serial 		= pMfg_serial;     
-		year 			= pYear;              
-		age 			= pAge;               
-		building_name 	= pBuilding_name;  
-		room_number 	= pRoom_number;      
-		room_type_text 	= pRoom_type_text; 
-		condition_text 	= pCondition_text;    
-		cost 			= pCost;
+		byui_piano_id  				= pByui_piano_id
+		make_name 					= pMake_name
+		model_name 					= pModel_name    
+		type_text 					= pType_text      
+		mfg_serial 					= pMfg_serial    
+		year 						= pYear              
+		age 						= pAge               
+		building_name 				= pBuilding_name
+		room_number 				= pRoom_number  
+		room_type_text 				= pRoom_type_text
+		condition_text 				= pCondition_text  
+		cost 						= pCost
+		dateOfService 				= pDateOfService
+		actionPerformed 			= pActionPerformed
+		serviceNote 				= pServiceNote
+		nextServiceDate 			= pNextServiceDate
+		actionPerformedBy 			= pActionPerformedBy
+		futureServiceNotes 			= pFutureServiceNotes
+		previousBuildingIfMoved 	= pPreviousBuildingIfMoved
+		previousRoomIfMoved 		= pPreviousRoomIfMoved
+		currentRelativeHumidity 	= pCurrentRelativeHumidity
+		currentRelativeTemperature 	= pCurrentRelativeTemperature
 	}
 }
 
