@@ -60,26 +60,37 @@
       </div>
 
       <h2> Get Piano Info </h2>
-      Piano ID
-        <div class="form-group input-group">
-          <input type="text" class="form-control">
-            
-        </div>
-        <hr/>
-		<br> Enter Piano Type <input type="text" id="type">
-		<input type="button" value="Get Info" onclick="getInfo();"/>
-		<br> Location : <span id="Location1"></span> <br
-		> ID : <span id="ID1"></span> <br
-		> Condition : <span id="Condition1"></span> <br>
-		
-		{{test}}
+      <div class="col-lg-3">ID: <input ng-model="search.id"></div>
+      <div class="col-lg-3">Type: <input ng-model="search.type"></div>
+      <div class="col-lg-3">Make: <input ng-model="search.make"></div>
+      <div class="col-lg-3">Model: <input ng-model="search.model"></div>
+      <hr>
+      <div class="col-lg-3">Year: <input ng-model="search.year"></div>
+      <div class="col-lg-3">Age: <input ng-model="search.age"></div>
+      <div class="col-lg-3">Condition: <input ng-model="search.condition"></div>
+      <div class="col-lg-3">Serial: <input ng-model="search.serial"></div>
 
-    
-		 
-    <ul>
-    <li ng-repeat="piano in pianos | filter:byui_piano_id | orderBy:'byui_piano_id'"> {{piano.make_name}},
-                                                                                                      {{piano.model_name}}, {{piano.year}}</li>
-                                                                                                    </ul>
+      <div class="col-lg-12">
+            <h2>Pianos</h2>
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover table-striped tablesorter">
+                <thead>
+                  <tr>
+                    <th>Piano <i class="fa fa-sort"></i></th>
+                    <th>Type <i class="fa fa-sort"></i></th>
+                    <th>Year <i class="fa fa-sort"></i></th>
+                    <th>Location <i class="fa fa-sort"></i></th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="piano in pianos | filter:search | orderBy:'byui_piano_id'"> <td>{{piano.byui_piano_id}}</td>
+                                                                           <td>{{piano.type_text}}</td> 
+                                                                           <td>{{piano.year}}</td> 
+                                                                           <td>{{piano.building_name}}, {{piano.room_number}}</tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
 
     </div> <!-- /container -->
 

@@ -68,7 +68,15 @@ function dbController($scope)
 {
   $scope.pianos = localCache().get("piano", "object");
   console.log($scope.pianos);
-  $scope.test = "hey!";
+
+  $scope.testPianoRooms = [ {building_name:'Ricks',  room_number:'101'},
+                        {building_name:'Ricks',  room_number:'102'},
+                        {building_name:'Austin', room_number:'103'},
+                        {building_name:'Austin', room_number:'104'},
+                        {building_name:'Benson', room_number:'105'},
+                        {building_name:'Benson', room_number:'106'},
+                        {building_name:'Benson', room_number:'201'},
+                        {building_name:'Snow',   room_number:'202'}];
 }
 
 	
