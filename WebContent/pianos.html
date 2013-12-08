@@ -34,7 +34,7 @@
 
     </script>
 </head>
-	<body ng-controller="dbController">
+	<body onload="getInfo()" ng-controller="dbController">
 		<div class="container">
       <!-- Static navbar -->
       <div class="navbar navbar-default" role="navigation">
@@ -72,54 +72,10 @@
                   </tr>
                 </thead>
                 <tbody>
-
-                    <tr ng-repeat="piano in pianos | orderBy:'make_name'"> <td>{{piano.byui_piano_id}}</td>
-                                                                                                      <td>{{pianos.type_text}}</td> 
-                                                                                                      <td>{{piano.year}}</td> 
-                                                                                                      <td>{{piano.building_name}}, {{piano.room_number}}</tr>
-          
-                  <!-- <tr>
-                    <td><a href="pianoInfo.html">Piano1</a></td>
-                    <td>type1</td>
-                    <td>2010</td>
-                    <td>AUS-215</td>
-                  </tr>
-                  <tr>
-                    <td><a href="pianoInfo.html">Piano2</a></td>
-                    <td>type3</td>
-                    <td>2003</td>
-                    <td>AUS-210</td>
-                  </tr>
-                  <tr>
-                    <td><a href="pianoInfo.html">Piano3</a></td>
-                    <td>type3</td>
-                    <td>1999</td>
-                    <td>ROM-154</td>
-                  </tr>
-                  <tr>
-                    <td><a href="pianoInfo.html">Piano4</a></td>
-                    <td>type1</td>
-                    <td>2008</td>
-                    <td>SNO-200</td>
-                  </tr>
-                  <tr>
-                    <td><a href="pianoInfo.html">Piano5</a></td>
-                    <td>type4</td>
-                    <td>2010</td>
-                    <td>MCK-101</td>
-                  </tr>
-                  <tr>
-                    <td><a href="pianoInfo.html">Piano6</a></td>
-                    <td>type4</td>
-                    <td>2013</td>
-                    <td>BEN-175</td>
-                  </tr>
-                  <tr>
-                    <td><a href="pianoInfo.html">Piano7</a></td>
-                    <td>type4</td>
-                    <td>2012</td>
-                    <td>MCK-316</td> -->
-                  <!-- </tr> -->
+                    <tr ng-repeat="piano in pianos | orderBy:'byui_piano_id'"> <td>{{piano.byui_piano_id}}</td>
+                                                                           <td>{{piano.type_text}}</td> 
+                                                                           <td>{{piano.year}}</td> 
+                                                                           <td>{{piano.building_name}}, {{piano.room_number}}</tr>
                 </tbody>
               </table>
             </div>
