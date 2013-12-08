@@ -1,3 +1,5 @@
+ app = angular.module("dbpianistic");
+
  var localCache = function () {
        //TODO: Add some more cross-browser stuff here.
        var cache = window.sessionStorage;
@@ -64,19 +66,23 @@ var getInfo = function()
 	});
 };
 
+app.controller('dbContoller', [ '$scope', function ($scope){ 
+} ]);
 function dbController($scope)
 {
+  $scope.currentPiano;
   $scope.pianos = localCache().get("piano", "object");
   console.log($scope.pianos);
+  $scope.test = "hey!";
 
-  $scope.testPianoRooms = [ {building_name:'Ricks',  room_number:'101'},
-                        {building_name:'Ricks',  room_number:'102'},
-                        {building_name:'Austin', room_number:'103'},
-                        {building_name:'Austin', room_number:'104'},
-                        {building_name:'Benson', room_number:'105'},
-                        {building_name:'Benson', room_number:'106'},
-                        {building_name:'Benson', room_number:'201'},
-                        {building_name:'Snow',   room_number:'202'}];
+  $scope.openPage = function(selectedPiano)
+  {
+    console.log(selectedPiano.year);
+    $scope.currentPiano = selectedPiano;
+    // var result = $.grep($scope.pianos, function(e){ return e.byui_piano_id == selectedID; });
+    window.open("pianoInfo.html","_self");
+    console.log($scope.currentPiano.year);
+  };
 }
 
 	

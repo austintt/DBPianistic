@@ -60,22 +60,25 @@
       </div>
 
       <div class="col-lg-12">
-            <h2>Pianos</h2>
+            <h2>Pianos </span></h2>
             <div class="table-responsive">
               <table class="table table-bordered table-hover table-striped tablesorter">
                 <thead>
                   <tr>
-                    <th>Piano <i class="fa fa-sort"></i></th>
-                    <th>Type <i class="fa fa-sort"></i></th>
-                    <th>Year <i class="fa fa-sort"></i></th>
-                    <th>Location <i class="fa fa-sort"></i></th>
+                    <th>Piano <span class="glyphicon glyphicon-chevron-down"></th>
+                    <th>Type <span class="glyphicon glyphicon-chevron-down"></i></th>
+                    <th>Year <span class="glyphicon glyphicon-chevron-down"></i></th>
+                    <th>Location <span class="glyphicon glyphicon-chevron-down"></i></th>
                   </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="piano in pianos | orderBy:'byui_piano_id'"> <td>{{piano.byui_piano_id}}</td>
+                    <tr ng-repeat="piano in pianos | orderBy:'byui_piano_id'" ng-cloak ng-click="openPage(piano)">
+                                                                          
+                                                                           <td>{{piano.byui_piano_id}}</td>
                                                                            <td>{{piano.type_text}}</td> 
                                                                            <td>{{piano.year}}</td> 
-                                                                           <td>{{piano.building_name}}, {{piano.room_number}}</tr>
+                                                                           <td>{{piano.building_name}}, {{piano.room_number}}</td>
+                                                                           </tr>
                 </tbody>
               </table>
             </div>
