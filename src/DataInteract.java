@@ -1103,6 +1103,126 @@ public class DataInteract
 		}
 		System.out.println("Operation done successfully");
 	}	
+
+	public List<Piano> theBigDump()
+	{
+		Connection c = null;
+		Statement stmt = null;
+		try 
+		{
+			Class.forName("org.sqlite.JDBC");
+			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c.setAutoCommit(false);
+			System.out.println("Opened database successfully");
+			List<Piano> pianoData = new ArrayList<Piano>();
+
+			stmt = c.createStatement();
+			ResultSet rs = stmt.executeQuery( "SELECT p.byui_piano_id "
+					                        + ",      p.mfg_serial "
+					                        + ",      p.year "
+					                        + ",      (SELECT Date('now') - year) AS age "
+					                        + ",      b.building_name "
+					                        + ",      room_number "
+					                        + ",      rt.room_type_text "
+					                        + ",      pc.condition_text "
+					                        + ",      pmk.make_name "
+					                        + ",      pm.model_name "
+					                        + ",      pt.type_text "
+					                        + ",      p.cost "
+					                        + ",      psh.date_of_service "
+					                        + ",      psh.action_performed "
+					                        + ",      psh.service_notes "
+					                        + ",      psh.next_service_date "
+					                        + ",      psh.action_performed_by "
+					                        + ",      psh.future_service_notes "
+					                        + ",      bl.building_name  AS previous_building_if_moved "
+					                        + ",      psh.previous_room_if_moved "
+					                        + ",      psh.current_relative_humidity "
+					                        + ",      psh.current_relative_temperature "
+					                        + "FROM piano p "
+					                        + "LEFT OUTER JOIN building b ON b.byui_building_id = p.building_id "
+					                        + "LEFT OUTER JOIN piano_condition pc ON pc.condition_id = p.condition_id "
+					                        + "LEFT OUTER JOIN piano_make pmk ON pmk.make_id = p.make_id "
+					                        + "LEFT OUTER JOIN room_type rt ON rt.room_type_id = p.room_type_id "
+					                        + "LEFT OUTER JOIN piano_type pt ON pt.type_id = p.type_id "
+					                        + "LEFT OUTER JOIN piano_model pm ON pm.model_id = p.model_id "
+					                        + "LEFT OUTER JOIN piano_service_history psh ON psh.byui_piano_id = p.byui_piano_id "
+					                        + "LEFT OUTER JOIN building bl ON psh.previous_building_if_moved = bl.byui_building_id; "
+					                        + "");
+			
+			while (rs.next()) 
+			{
+				int byui_piano_id                 = rs.getInt("byui_piano_id");
+				String make_name                  = rs.getString("make_name");
+				String model_name                 = rs.getString("model_name");
+				String type_text                  = rs.getString("type_text");
+				String mfg_serial                 = rs.getString("mfg_serial");
+				int year                          = rs.getInt("year");
+				int age                           = rs.getInt("age");
+				String building_name              = rs.getString("building_name");
+				int room_number                   = rs.getInt("room_number");
+				String room_type_text             = rs.getString("room_type_text");
+				int condition_text                = rs.getInt("condition_text");
+				float cost                        = rs.getFloat("cost");
+				String date_of_service            = rs.getString("date_of_service");
+				String action_performed           = rs.getString("action_performed");
+				String service_notes              = rs.getString("service_notes");
+				String next_service_date          = rs.getString("next_service_date");
+				String action_performed_by        = rs.getString("action_performed_by");
+				String future_service_notes       = rs.getString("future_service_notes");
+				String previous_building_if_moved = rs.getString("previous_building_if_moved");
+				int previous_room_if_moved        = rs.getInt("previous_room_if_moved");
+				int current_relative_humidity     = rs.getInt("current_relative_humidity");
+				int current_relative_temperature  = rs.getInt("current_relative_temperature");
+				
+				
+
+				System.out.println( "byui_piano_id = "                + byui_piano_id );
+				System.out.println( "make_name = "                    + make_name );
+				System.out.println( "model_name = "                   + model_name );
+				System.out.println( "type_text = "                    + type_text );
+				System.out.println( "mfg_serial = "                   + mfg_serial );
+				System.out.println( "year = "                         + year );
+				System.out.println( "age = "                          + age );
+				System.out.println( "building_name = "                + building_name );
+				System.out.println( "room_number = "                  + room_number );
+				System.out.println( "room_type_text = "               + room_type_text );
+				System.out.println( "condition_text = "               + condition_text );
+				System.out.println( "cost = "                         + cost );         
+				System.out.println( "date_of_service = "              + date_of_service );
+				System.out.println( "action_performed = "             + action_performed );
+				System.out.println( "service_notes = "                + service_notes );
+				System.out.println( "next_service_date = "            + next_service_date );
+				System.out.println( "action_performed_by = "          + action_performed_by );
+				System.out.println( "future_service_notes = "         + future_service_notes );
+				System.out.println( "previous_building_if_moved = "   + previous_building_if_moved );
+				System.out.println( "previous_room_if_moved = "       + previous_room_if_moved );
+				System.out.println( "current_relative_humidity = "    + current_relative_humidity );
+				System.out.println( "current_relative_temperature = " + current_relative_temperature );  
+				
+				System.out.println();
+
+				pianoData.add(new Piano(piano_sk, byui_piano_id, make_id, model_id, 
+						                type_id, mfg_serial, year, building_id, room_number, 
+						                room_type_id, condition_id, cost));
+
+			
+			}
+			rs.close();
+			stmt.close();
+			c.close();
+			
+			return pianoData;
+		} 
+		catch (Exception e) 
+		{
+			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+			System.exit(0);
+		}
+		System.out.println("Operation done successfully");
+		return null;
+	}	
+
 	public void queryPianoMake()
 	{
 		Connection c = null;
