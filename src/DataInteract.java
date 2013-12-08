@@ -1563,15 +1563,16 @@ public class DataInteract
 		//dataInt.insertRoomType("'Odd Room'");
 		//dataInt.updateRoomType("'room_type_text'", "'Really Odd Room'", "'Odd Room'");
 		//dataInt.deleteRoomType("'Really Odd Room'");
-		dataInt.queryPianoMake();
-		dataInt.queryPianoModel();
-		dataInt.queryPianoType();
-		dataInt.queryPianoCondition();
-		dataInt.queryBuilding();
-		dataInt.queryRoomType();
-		dataInt.queryPiano();
-		dataInt.queryPianoServiceHistory();
-		dataInt.pianoServiceHistoryDumpQuery();
-		dataInt.pianoDumpQuery();
+//		dataInt.queryPianoMake();
+//		dataInt.queryPianoModel();
+//		dataInt.queryPianoType();
+//		dataInt.queryPianoCondition();
+//		dataInt.queryBuilding();
+//		dataInt.queryRoomType();
+//		dataInt.queryPiano();
+//		dataInt.queryPianoServiceHistory();
+//		dataInt.pianoServiceHistoryDumpQuery();
+//		dataInt.pianoDumpQuery();
+		dataInt.theBigDump();
 	}
 }
