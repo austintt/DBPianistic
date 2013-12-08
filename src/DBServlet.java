@@ -33,7 +33,7 @@ public class DBServlet extends HttpServlet {
 		PrintWriter out =  response.getWriter();
 		String req = request.getParameter("type");
 		
-		List<Piano> pianos = interact.queryPiano();
+		List<Piano> pianos = interact.pianoDumpQuery();
 		out.println(new Gson().toJson(pianos));
 	}
 

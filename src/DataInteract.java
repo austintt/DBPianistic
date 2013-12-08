@@ -5,7 +5,7 @@ import java.util.List;
 public class DataInteract 
 {
 
-	String dataSource =  "jdbc:sqlite::test.db";
+	String dataSource =  "jdbc:sqlite::resource:test.db";
 	
 	public DataInteract()
 	{
@@ -1009,9 +1009,17 @@ public class DataInteract
 				System.out.println( "cost = " + cost );         
 				System.out.println();
 
-				pianoData.add(new Piano(piano_sk, byui_piano_id, make_id, model_id, 
-						                type_id, mfg_serial, year, building_id, room_number, 
-						                room_type_id, condition_id, cost));
+				pianoData.add(new Piano(byui_piano_id, make_name,
+				model_name,     
+				type_text,      
+				mfg_serial,     
+				year,             
+				age,               
+				building_name,  
+				room_number,      
+				room_type_text, 
+				condition_text,   
+				cost));
 
 			
 			}

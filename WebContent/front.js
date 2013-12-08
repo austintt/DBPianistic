@@ -60,6 +60,7 @@ var getInfo = function()
 //		console.log(data);
 		localCache().save("piano", data);
 		localCache().get("piano", "object");
+		console.log(localCache().get("piano", "object"));
 	});
 };
 

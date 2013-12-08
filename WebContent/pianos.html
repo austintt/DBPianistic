@@ -13,7 +13,7 @@
   <link rel="stylesheet" type="text/css" href="stylesheet.css" />
 	
 	<!--JS-->
-	<script type="text/javascript" src="js/front.js"></script>
+	<script type="text/javascript" src="front.js"></script>
 	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
   	<script src="bootstrap/js/bootstrap.min.js"></script>
   	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js"></script>
@@ -72,7 +72,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+
+                    <tr ng-repeat="piano in pianos | orderBy:'make_name'"> <td>{{piano.byui_piano_id}}</td>
+                                                                                                      <td>{{pianos.type_text}}</td> 
+                                                                                                      <td>{{piano.year}}</td> 
+                                                                                                      <td>{{piano.building_name}}, {{piano.room_number}}</tr>
+          
+                  <!-- <tr>
                     <td><a href="pianoInfo.html">Piano1</a></td>
                     <td>type1</td>
                     <td>2010</td>
@@ -112,8 +118,8 @@
                     <td><a href="pianoInfo.html">Piano7</a></td>
                     <td>type4</td>
                     <td>2012</td>
-                    <td>MCK-316</td>
-                  </tr>
+                    <td>MCK-316</td> -->
+                  <!-- </tr> -->
                 </tbody>
               </table>
             </div>

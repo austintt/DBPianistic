@@ -74,6 +74,13 @@
 		
 		{{test}}
 
+    
+		 
+    <ul>
+    <li ng-repeat="piano in pianos | filter:byui_piano_id | orderBy:'byui_piano_id'"> {{piano.make_name}},
+                                                                                                      {{piano.model_name}}, {{piano.year}}</li>
+                                                                                                    </ul>
+
     </div> <!-- /container -->
 
 
