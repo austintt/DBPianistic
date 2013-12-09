@@ -1533,6 +1533,210 @@ public class DataInteract
 		return null;
 	}
 
+	/**
+	 * DESC: Get's a list of possible piano makes from the piano_make table in the data base
+	 * 
+	 *
+	 */
+	public void getPianoMakeList()
+	{
+		Connection c = null;
+		Statement stmt = null;
+		try 
+		{
+			Class.forName("org.sqlite.JDBC");
+			c = DriverManager.getConnection(dataSource);
+			c.setAutoCommit(false);
+			
+			stmt = c.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT make_name FROM piano_make;");
+			while (rs.next())
+			{
+				String make_name = rs.getString("make_name");
+				
+				System.out.println(make_name);
+			}
+			rs.close();
+			stmt.close();
+			c.close();
+		} 
+		catch (Exception e) 
+		{
+			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+			System.exit(0);
+		}
+	}
+
+	/**
+	 * DESC: Get's a list of possible piano models from the piano_model table in the data base
+	 * 
+	 *
+	 */
+	public void getPianoModelList()
+	{
+		Connection c = null;
+		Statement stmt = null;
+		try 
+		{
+			Class.forName("org.sqlite.JDBC");
+			c = DriverManager.getConnection(dataSource);
+			c.setAutoCommit(false);
+			
+			stmt = c.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT model_name FROM piano_model;");
+			while (rs.next())
+			{
+				String model_name = rs.getString("model_name");
+				
+				System.out.println(model_name);
+			}
+			rs.close();
+			stmt.close();
+			c.close();
+		} 
+		catch (Exception e) 
+		{
+			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+			System.exit(0);
+		}
+	}
+
+	/**
+	 * DESC: Get's a list of possible piano types from the piano_type table in the data base
+	 * 
+	 *
+	 */
+	public void getPianoTypeList()
+	{
+		Connection c = null;
+		Statement stmt = null;
+		try 
+		{
+			Class.forName("org.sqlite.JDBC");
+			c = DriverManager.getConnection(dataSource);
+			c.setAutoCommit(false);
+			
+			stmt = c.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT type_text FROM piano_type;");
+			while (rs.next())
+			{
+				String type_text = rs.getString("type_text");
+				
+				System.out.println(type_text);
+			}
+			rs.close();
+			stmt.close();
+			c.close();
+		} 
+		catch (Exception e) 
+		{
+			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+			System.exit(0);
+		}
+	}
+
+	/**
+	 * DESC: Get's a list of possible room types from the room_type table in the data base
+	 * 
+	 *
+	 */
+	public void getRoomTypeList()
+	{
+		Connection c = null;
+		Statement stmt = null;
+		try 
+		{
+			Class.forName("org.sqlite.JDBC");
+			c = DriverManager.getConnection(dataSource);
+			c.setAutoCommit(false);
+			
+			stmt = c.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT room_type_text FROM room_type;");
+			while (rs.next())
+			{
+				String room_type_text = rs.getString("room_type_text");
+				
+				System.out.println(room_type_text);
+			}
+			rs.close();
+			stmt.close();
+			c.close();
+		} 
+		catch (Exception e) 
+		{
+			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+			System.exit(0);
+		}
+	}
+	
+	
+	/**
+	 * DESC: Get's a list of possible piano conditions from the piano_condition table in the data base
+	 * 
+	 *
+	 */
+	public void getPianoConditionList()
+	{
+		Connection c = null;
+		Statement stmt = null;
+		try 
+		{
+			Class.forName("org.sqlite.JDBC");
+			c = DriverManager.getConnection(dataSource);
+			c.setAutoCommit(false);
+			
+			stmt = c.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT condition_text FROM piano_condition;");
+			while (rs.next())
+			{
+				String condition_text = rs.getString("condition_text");
+				
+				System.out.println(condition_text);
+			}
+			rs.close();
+			stmt.close();
+			c.close();
+		} 
+		catch (Exception e) 
+		{
+			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+			System.exit(0);
+		}
+	}
+
+	/**
+	 * DESC: Get's a list of buildings from the building table in the data base
+	 * 
+	 *
+	 */
+	public void getBuildingList()
+	{
+		Connection c = null;
+		Statement stmt = null;
+		try 
+		{
+			Class.forName("org.sqlite.JDBC");
+			c = DriverManager.getConnection(dataSource);
+			c.setAutoCommit(false);
+			
+			stmt = c.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT building_name FROM building;");
+			while (rs.next())
+			{
+				String building_name = rs.getString("building_name");
+				
+				System.out.println(building_name);
+			}
+			rs.close();
+			stmt.close();
+			c.close();
+		} 
+		catch (Exception e) 
+		{
+			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+			System.exit(0);
+		}
+	}
 	public static void main(String args[])
 	{
 		DataInteract dataInt = new DataInteract(); 
@@ -1572,6 +1776,13 @@ public class DataInteract
 //		dataInt.queryPianoServiceHistory();
 //		dataInt.pianoServiceHistoryDumpQuery();
 //		dataInt.pianoDumpQuery();
-		dataInt.theBigDump();
+//		dataInt.theBigDump();
+//		dataInt.getPianoMakeList();
+//		dataInt.getPianoModelList();
+//		dataInt.getPianoTypeList();
+//		dataInt.getRoomTypeList();
+//		dataInt.getPianoConditionList();
+//		dataInt.getBuildingList();
+		
 	}
 }
