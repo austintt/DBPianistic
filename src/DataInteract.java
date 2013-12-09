@@ -16,16 +16,16 @@ public class DataInteract
 
 	/**
 	 * DESC: Insert an item into the piano table. All parameters must be used and have valid data.
-	 * @param pBYUIPianoID, pMakeID, pModelID, pTypeID, pMfgSerial, pYear, pBuildingID
-	 *        pRoomNumber, pRoomTypeID, pConditionID, pCost.
+	 * @param pBYUIPianoID, pPianoMake, pPianoModel, pPianoType, pMfgSerial, pYear, pBuildingName
+	 *        pRoomNumber, pRoomType, pPianoCondition, pCost.
 	 * 
 	 *		  Each parameter maps to a column in the piano table and is named accordingly
 	 *
 	 */
-	public void insertPiano(int pBYUIPianoID, int pMakeID, int pModelID,
-			                int pTypeID, String pMfgSerial, int pYear, 
-			                int pBuildingID, int pRoomNumber, 
-			                int pRoomTypeID, int pConditionID, float pCost)
+	public void insertPiano(int pBYUIPianoID, String pPianoMake, String pPianoModel,
+						    String pPianoType, String pMfgSerial, int pYear, 
+						    String pBuildingName, int pRoomNumber, 
+						    String pRoomType, String pPianoCondition, float pCost)
 	{
 		Connection c = null;
 		Statement stmt = null;
@@ -37,30 +37,29 @@ public class DataInteract
 			System.out.println("Opened database successfully");
 			stmt = c.createStatement();
 
-			String sql = "INSERT INTO "
-					   + "PIANO "
-					   + "( byui_piano_id"
-					   + ", make_id"
-					   + ", model_id"
-					   + ", type_id"
-					   + ", mfg_serial"
-					   + ", year"
-					   + ", building_id"
-					   + ", room_number"
-					   + ", room_type_id"
-					   + ", condition_id"
+			String sql = "INSERT INTO PIANO "
+					   + "( byui_piano_id "
+					   + ", make_id "
+					   + ", model_id "
+					   + ", type_id "
+					   + ", mfg_serial "
+					   + ", year "
+					   + ", building_id "
+					   + ", room_number "
+					   + ", room_type_id "
+					   + ", condition_id "
 					   + ", cost) "
-					   + "VALUES (" + pBYUIPianoID + "," 
-					                + pMakeID + "," 
-					                + pModelID + "," 
-					                + pTypeID + "," 
-					                + pMfgSerial + "," 
-					                + pYear + "," 
-					                + pBuildingID + "," 
-					                + pRoomNumber + "," 
-					                + pRoomTypeID + "," 
-					                + pConditionID + "," 
-					                + pCost + ");";
+					   + "VALUES ( " + pBYUIPianoID + " "
+					   + ", (SELECT make_id from piano_make WHERE make_name = '" + pPianoMake + "')"
+					   + ", (SELECT model_id from piano_model WHERE model_name = '" + pPianoModel + "')"
+					   + ", (SELECT type_id from piano_type WHERE type_text = '" + pPianoType + "')"
+					   + ", '" + pMfgSerial + "'"
+					   + ", " + pYear + " "
+					   + ", (SELECT byui_building_id from building WHERE building_name = '" + pBuildingName + "')"
+					   + ", " + pRoomNumber + " "
+					   + ", (SELECT room_type_id from ROOM_TYPE WHERE room_type_text = '" + pRoomType + "')"
+					   + ", (SELECT condition_id from PIANO_CONDITION WHERE condition_text = '" + pPianoCondition + "')"
+					   + ", " + pCost + ");";
 			System.out.println("About to execute statement: " + sql);
 
 			stmt.executeUpdate(sql);
