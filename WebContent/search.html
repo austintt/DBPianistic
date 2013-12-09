@@ -60,15 +60,22 @@
       </div>
 
       <h2> Get Piano Info </h2>
-      <div class="col-lg-3">ID: <input ng-model="search.byui_piano_id"></div>
-      <div class="col-lg-3">Type: <input ng-model="search.type_text"></div>
-      <div class="col-lg-3">Make: <input ng-model="search.make"></div>
-      <div class="col-lg-3">Model: <input ng-model="search.model"></div>
-      <hr>
-      <div class="col-lg-3">Year: <input ng-model="search.year"></div>
-      <div class="col-lg-3">Age: <input ng-model="search.age"></div>
-      <div class="col-lg-3">Condition: <input ng-model="search.condition"></div>
-      <div class="col-lg-3">Serial: <input ng-model="search.serial"></div>
+      <div class="col-lg-12">
+      <table>
+        <tr>
+          <td>ID: </td><td><input ng-model="search.byui_piano_id" size="3" maxlength="3"></td>
+          <td style="padding-left:3em">Type: </td><td><input ng-model="search.type_text"></td>
+          <td style="padding-left:3em">Make: </td><td><input ng-model="search.make_name"></td>
+          <td style="padding-left:3em">Model: </td><td><input ng-model="search.model_name"></td>
+        </tr>
+        <tr>
+          <td style="padding-left:3em">Year: </td><td><input ng-model="search.year"></td>
+          <td style="padding-left:3em">Age: </td><td><input ng-model="search.age"></td>
+          <td style="padding-left:3em">Condition: </td><td><input ng-model="search.condition_text"></td>
+          <td style="padding-left:3em">Serial: </td><td><input ng-model="search.mfg_serial"></td>
+        </tr>
+      </table>
+    </div>
 
       <div class="col-lg-12">
             <h2>Pianos</h2>

@@ -7,18 +7,16 @@
     <meta name="description" content="">
     <meta name="author" content="">
 	<title>dbPiandistic</title>
-
+	
 	<!--stylesheets-->
 	<link href="bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
    	<link rel="stylesheet" type="text/css" href="stylesheet.css" />
-
+	
 	<!--JS-->
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular-route.js"></script>
 	<script type="text/javascript" src="front.js"></script>
 	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js"></script>
 
     <script type="text/javascript">
 
@@ -36,11 +34,9 @@
 
     </script>
 </head>
-	<body ng-app="dbPianistic"> <!-- Start the angular app -->
-		<div class="container" ng-view=""></div> <!-- Tell angular to render it's views here. -->
-    <!-- It'll stick whatever templates you've defined in the routing here. Normally you leave this empty here. -->
-    <!-- This page should generally only have site-wide data like your header and footer on it.
-    <!-- Static navbar -->
+	<body>
+		<div class="container">
+      <!-- Static navbar -->
       <div class="navbar navbar-default" role="navigation">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">

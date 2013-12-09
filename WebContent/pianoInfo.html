@@ -34,7 +34,7 @@
 
     </script>
 </head>
-	<body ng-controller="dbController">
+	<body onload="loadPiano()" ng-controller="dbController">
 		<div class="container">
       <!-- Static navbar -->
       <div class="navbar navbar-default" role="navigation">
@@ -61,10 +61,16 @@
 
 <div class="container">
   <div class="col-lg-6">
-    <h1>Piano ID: {{currentPiano.byui_piano_id}}</h1>
-    <p>Current Location: {{test}}</p>
-    <p>Type: #######</p>
-    <p>Age: ######</p>
+    <h1><b>Piano ID:</b> {{currentPiano.byui_piano_id}}</h1>
+    <p><b>Current Location:</b> {{currentPiano.building_name}}, {{currentPiano.room_number}} - {{currentPiano.room_type_text}}</p>
+    <p><b>Make: </b>{{currentPiano.make_name}}</p>
+    <p><b>Model: </b>{{currentPiano.model_name}}</p>
+    <p><b>Serial #:</b> {{currentPiano.mfg_serial}}</p>
+    <p><b>Type:</b> {{currentPiano.type_text}}</p>
+    <p><b>Condition:</b> {{currentPiano.condition_text}}</p>
+    <p><b>Cost:</b> {{currentPiano.cost}}</p>
+    <p><b>Age:</b> {{currentPiano.age}} years</p>
+
   </div>
   <div class="col-lg-6">
     <div class="panel panel-primary">
