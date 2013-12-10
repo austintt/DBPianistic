@@ -22,8 +22,8 @@
   
   <!--JS-->
   <script type="text/javascript" src="front.js"></script>
-  <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+<!--   // <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+  //   <script src="bootstrap/js/bootstrap.min.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js"></script>
 
     <script type="text/javascript">
@@ -91,18 +91,25 @@
               <table class="table table-bordered table-hover table-striped tablesorter">
                 <thead>
                   <tr>
-                    <th>Piano <i class="fa fa-sort"></i></th>
-                    <th>Type <i class="fa fa-sort"></i></th>
-                    <th>Year <i class="fa fa-sort"></i></th>
-                    <th>Location <i class="fa fa-sort"></i></th>
-                    <th>Serial #</th>
+                    <th>Piano <span class="glyphicon glyphicon-chevron-down"></th>
+                    <th>Type <span class="glyphicon glyphicon-chevron-down"></th>
+                    <th>Year <span class="glyphicon glyphicon-chevron-down"></th>
+                    <th>Age <span class="glyphicon glyphicon-chevron-down"></th>
+                    <th>Location <span class="glyphicon glyphicon-chevron-down"></th>
+                    <th>Serial # <span class="glyphicon glyphicon-chevron-down"></th>
+                    <th>Condition <span class="glyphicon glyphicon-chevron-down"></th>
                   </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="piano in pianos | filter:search | orderBy:'byui_piano_id'"> <td>{{piano.byui_piano_id}}</td>
-                                                                           <td>{{piano.type_text}}</td> 
-                                                                           <td>{{piano.year}}</td> 
-                                                                           <td>{{piano.building_name}}, {{piano.room_number}}</tr>
+                    <tr ng-repeat="piano in pianos | orderBy:'byui_piano_id'" ng-cloak ng-click="openPage(piano)">
+                      <td>{{piano.byui_piano_id}}</td>
+                      <td>{{piano.type_text}}</td> 
+                      <td>{{piano.year}}</td> 
+                      <td>{{piano.age}}</td>
+                      <td>{{piano.building_name}}, {{piano.room_number}}</td>
+                      <td>{{piano.mfg_serial}}</td>
+                      <td>{{piano.condition_text}}</td>
+                    </tr>
                 </tbody>
               </table>
             </div>
@@ -116,6 +123,10 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+
+       <!-- Page Specific Plugins -->
+    <script src="js/tablesorter/jquery.tablesorter.js"></script>
+    <script src="js/tablesorter/tables.js"></script>
 
 </body>
 </html>
