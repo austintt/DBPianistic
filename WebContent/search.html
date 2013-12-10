@@ -101,7 +101,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="piano in pianos | orderBy:'byui_piano_id'" ng-cloak ng-click="openPage(piano)">
+                    <tr ng-repeat="piano in pianos | filter:search | orderBy:'byui_piano_id'" ng-cloak ng-click="openPage(piano)">
                       <td>{{piano.byui_piano_id}}</td>
                       <td>{{piano.type_text}}</td> 
                       <td>{{piano.year}}</td> 
