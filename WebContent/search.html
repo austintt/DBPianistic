@@ -92,6 +92,8 @@
                   <tr>
                     <th>Piano <span class="glyphicon glyphicon-chevron-down"></th>
                     <th>Type <span class="glyphicon glyphicon-chevron-down"></th>
+                    <th>Make <span class="glyphicon glyphicon-chevron-down"></th>
+                    <th>Model <span class="glyphicon glyphicon-chevron-down"></th>
                     <th>Year <span class="glyphicon glyphicon-chevron-down"></th>
                     <th>Age <span class="glyphicon glyphicon-chevron-down"></th>
                     <th>Location <span class="glyphicon glyphicon-chevron-down"></th>
@@ -102,7 +104,9 @@
                 <tbody>
                     <tr ng-repeat="piano in pianos | filter:search | orderBy:'byui_piano_id'" ng-cloak ng-click="openPage(piano)">
                       <td>{{piano.byui_piano_id}}</td>
-                      <td>{{piano.type_text}}</td> 
+                      <td>{{piano.type_text}}</td>
+                      <td>{{piano.make_name}}</td>
+                      <td>{{piano.model_name}}</td>
                       <td>{{piano.year}}</td> 
                       <td>{{piano.age}}</td>
                       <td>{{piano.building_name}}, {{piano.room_number}}</td>
