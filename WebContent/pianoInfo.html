@@ -78,14 +78,13 @@
     <p><b>Condition:</b> {{currentPiano.condition_text}}</p>
     <p><b>Cost:</b> ${{currentPiano.cost}}</p>
     <p><b>Age:</b> {{currentPiano.age}} years</p>
-    <br>
   </div>
   <div class="col-lg-6">
     <div class="table-responsive tableBox">
-              <table class="table table-bordered table-hover table-striped tablesorter pianos">
+              <table class="table table-bordered table-hover table-striped historyTable">
                 <div style="background:#3C3C3C" class="panel-heading">
                   <div style="color:white" class="panel-title">
-                    Service History
+                    Service History <a href=""><div href="#" class="addButton">+ Event</div></a>
                   </div>
                 </div>
                 <thead>
@@ -114,51 +113,47 @@
 
 <div class="container">
   <div class="col-lg-6">
-    <image src={{pic}} />
-  </div>
-  <div class="col-lg-6">
+    <div class="table-responsive tableBox">
+              <table class="table table-bordered table-hover table-striped historyTable">
+                <div style="background:#3C3C3C" class="panel-heading">
+                  <div style="color:white" class="panel-title">
+                    Atmospheric Report
+                  </div>
+                </div>
+                <thead>
+                  <tr>
+                    <th>Date </th>
+                    <th>Humidity</th>
+                    <th>Temperature</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="event in currentPiano.eventData  | orderBy:'dateOfService'">
+                      <td>{{event.dateOfService}}</td>
+                      <td>{{event.currentRelativeHumidity}}</td>
+                      <td>{{event.currentRelativeTemperature}}</td>
+                    </tr>
+                </tbody>
+              </table>
+      </div>
+    </div>
+    <div class="col-lg-5">
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title"><i class="fa fa-clock-o"></i>Notes</h3>
       </div>
       <div class="panel-body">
         <div class="list-group">
-          <a href="#" class="list-group-item">
-            <span class="badge">timeTest</span>
-            <i class="fa fa-calendar"></i> test
-          </a>
-          <a href="#" class="list-group-item">
-            <span class="badge">timeTest</span>
-            <i class="fa fa-comment"></i> test
-          </a>
-          <a href="#" class="list-group-item">
-            <span class="badge">timeTest</span>
-            <i class="fa fa-truck"></i> test
-          </a>
-          <a href="#" class="list-group-item">
-            <span class="badge">timeTest</span>
-            <i class="fa fa-money"></i> test
-          </a>
-          <a href="#" class="list-group-item">
-            <span class="badge">timeTest</span>
-            <i class="fa fa-user"></i> test
-          </a>
-          <a href="#" class="list-group-item">
-            <span class="badge">timeTest</span>
-             <i class="fa fa-check"></i> test
-          </a>
-          <a href="#" class="list-group-item">
-            <span class="badge">timeTest</span>
-            <i class="fa fa-globe"></i> test
-          </a>
-          <a href="#" class="list-group-item">
-            <span class="badge">timeTest</span>
-            <i class="fa fa-check"></i> test
-          </a>
+          <div class="notes panel" ng-repeat="event in currentPiano.eventData  | orderBy:'dateOfService'">
+            {{event.futureServiceNotes}}
+          </div>
         </div>
       </div>
     </div>
   </div>
+  </div>
+
 </div>
 
 <!--
