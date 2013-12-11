@@ -19,7 +19,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js"></script>
     
 </head>
-  <body>
+  <body ng-controller="dbController">
     <div class="container">
       <!-- Static navbar -->
       <div class="navbar navbar-default" role="navigation">
@@ -39,13 +39,14 @@
             <li ><a href="location.html">Locations</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="search.html">Search</a></li>
+            <li class="active"><a href="addPiano.html">Add Piano</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
 
       </div> <!-- /container -->
     <div class="container">
+      <h1 class="numPianos">  {{numPianos}} pianos! </h1>
     <!--  <div class="col-lg-12">
             <div class="form-group searchbox">
               <label>Piano ID: </label>
