@@ -957,6 +957,7 @@ public class DataInteract
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 			List<Piano> pianoData = new ArrayList<Piano>();
+			List<Event> eventData = new ArrayList<Event>();
 
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery( "SELECT p.byui_piano_id "
@@ -1008,6 +1009,8 @@ public class DataInteract
 				System.out.println( "cost = " + cost );         
 				System.out.println();
 
+				eventData.add(this.individualPianoServiceHistoryQuery(byui_piano_id))//call function
+				
 				pianoData.add(new Piano(byui_piano_id, make_name,
 				model_name,     
 				type_text,      
@@ -1018,7 +1021,7 @@ public class DataInteract
 				room_number,      
 				room_type_text, 
 				condition_text,   
-				cost));
+				cost, eventData));
 
 			
 			}
@@ -1102,6 +1105,87 @@ public class DataInteract
 		}
 		System.out.println("Operation done successfully");
 	}	
+
+	public List<Event> individualPianoServiceHistoryQuery(int pByuiPianoId)
+	{
+		Connection c = null;
+		Statement stmt = null;
+		try 
+		{
+			Class.forName("org.sqlite.JDBC");
+			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+			c.setAutoCommit(false);
+			System.out.println("Opened database successfully");
+			List<Event> eventData = new ArrayList<Event>();
+
+			stmt = c.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT psh.byui_piano_id "
+					                       + ",      psh.date_of_service "
+					                       + ",      psh.action_performed "
+					                       + ",      psh.service_notes "
+					                       + ",      psh.next_service_date "
+					                       + ",      psh.action_performed_by "
+					                       + ",      psh.future_service_notes "
+					                       + ",      b.building_name "
+					                       + ",      psh.previous_room_if_moved "
+					                       + ",      psh.current_relative_humidity "
+					                       + ",      psh.current_relative_temperature "
+					                       + "FROM piano_service_history psh "
+					                       + "LEFT OUTER JOIN building b ON psh.previous_building_if_moved = b.byui_building_id "
+					                       + "LEFT OUTER JOIN piano p ON psh.byui_piano_id = p.byui_piano_id WHERE psh.byui_piano_id = " + pByuiPianoId + ";");
+			
+			while (rs.next())
+			{
+				int byui_piano_id                 = rs.getInt("byui_piano_id");
+				String date_of_service            = rs.getString("date_of_service");
+				String action_performed           = rs.getString("action_performed");
+				String service_notes              = rs.getString("service_notes");
+				String next_service_date          = rs.getString("next_service_date");
+				String action_performed_by        = rs.getString("action_performed_by");
+				String future_service_notes       = rs.getString("future_service_notes");
+				String previous_building_if_moved = rs.getString("building_name");
+				String previous_room_if_moved     = rs.getString("previous_room_if_moved");
+				int current_relative_humidity     = rs.getInt("current_relative_humidity");
+				int current_relative_temperature  = rs.getInt("current_relative_temperature");
+
+				System.out.println( "byui_piano_id = "                + byui_piano_id );
+				System.out.println( "date_of_service = "              + date_of_service );
+				System.out.println( "action_performed = "             + action_performed );
+				System.out.println( "service_notes = "                + service_notes );
+				System.out.println( "next_service_date = "            + next_service_date );
+				System.out.println( "action_performed_by = "          + action_performed_by );
+				System.out.println( "future_service_notes = "         + future_service_notes );
+				System.out.println( "previous_building_if_moved = "   + previous_building_if_moved );
+				System.out.println( "previous_room_if_moved = "       + previous_room_if_moved );
+				System.out.println( "current_relative_humidity = "    + current_relative_humidity );
+				System.out.println( "current_relative_temperature = " + current_relative_temperature );  
+				System.out.println();
+				
+				Event pianoEvent = new Event(byui_piano_id, date_of_service, action_performed, service_notes,
+						                     next_service_date, action_performed_by, future_service_notes,
+						                     previous_building_if_moved, previous_room_if_moved,
+						                     current_relative_humidity, current_relative_temperature);
+				
+				eventData.add(pianoEvent);
+
+			
+			}
+
+
+		rs.close();
+		stmt.close();
+		c.close();
+		return eventData;
+			
+		}
+		catch (Exception e) 
+		{
+			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+			System.exit(0);
+		}
+		System.out.println("Operation done successfully");
+	}
+	
 
 	public List<Piano> theBigDump()
 	{
