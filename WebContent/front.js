@@ -70,6 +70,7 @@ function dbController($scope)
   $scope.pianos = localCache().get("piano", "object");
   console.log($scope.pianos);
   $scope.test = "hey!";
+  $scope.numPianos = $scope.pianos.length;
 
   $scope.openPage = function(selectedPiano)
   {

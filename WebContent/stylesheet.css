@@ -40,3 +40,8 @@ border-color: #3c3c3c;
  .tableBox {
 	margin-top: 2em;
  }
+
+ .numPianos {
+ 	text-align:center;
+ 	font-size: 10em;
+ }

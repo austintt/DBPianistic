@@ -67,58 +67,9 @@
         </div><!--/.nav-collapse -->
       </div>
 
-      <h2> Get Piano Info </h2>
-      <div class="col-lg-12">
-      <table  class="table-responsive">
-        <tr>
-          <td style="padding-left:3em">ID: </td><td><input ng-model="search.byui_piano_id"></td>
-          <td style="padding-left:3em">Type: </td><td><input ng-model="search.type_text"></td>
-          <td style="padding-left:3em">Make: </td><td><input ng-model="search.make_name"></td>
-          <td style="padding-left:3em">Model: </td><td><input ng-model="search.model_name"></td>
-        </tr>
-        <tr>
-          <td style="padding-left:3em">Year: </td><td><input ng-model="search.year"></td>
-          <td style="padding-left:3em">Age: </td><td><input ng-model="search.age"></td>
-          <td style="padding-left:3em">Condition: </td><td><input ng-model="search.condition_text"></td>
-          <td style="padding-left:3em">Serial: </td><td><input ng-model="search.mfg_serial"></td>
-        </tr>
-      </table>
-    </div>
+      <h1 class="numPianos">  {{numPianos}} pianos! </h1>
 
-      <div class="col-lg-12">
-            <div style="margin-top:2em" class="table-responsive">
-              <table class="table table-bordered table-hover table-striped tablesorter">
-                <thead>
-                  <tr>
-                    <th>Piano <span class="glyphicon glyphicon-chevron-down"></th>
-                    <th>Type <span class="glyphicon glyphicon-chevron-down"></th>
-                    <th>Make <span class="glyphicon glyphicon-chevron-down"></th>
-                    <th>Model <span class="glyphicon glyphicon-chevron-down"></th>
-                    <th>Year <span class="glyphicon glyphicon-chevron-down"></th>
-                    <th>Age <span class="glyphicon glyphicon-chevron-down"></th>
-                    <th>Location <span class="glyphicon glyphicon-chevron-down"></th>
-                    <th>Serial # <span class="glyphicon glyphicon-chevron-down"></th>
-                    <th>Condition <span class="glyphicon glyphicon-chevron-down"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="piano in pianos | filter:search | orderBy:'byui_piano_id'" ng-cloak ng-click="openPage(piano)">
-                      <td>{{piano.byui_piano_id}}</td>
-                      <td>{{piano.type_text}}</td>
-                      <td>{{piano.make_name}}</td>
-                      <td>{{piano.model_name}}</td>
-                      <td>{{piano.year}}</td> 
-                      <td>{{piano.age}}</td>
-                      <td>{{piano.building_name}}, {{piano.room_number}}</td>
-                      <td>{{piano.mfg_serial}}</td>
-                      <td>{{piano.condition_text}}</td>
-                    </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-    </div> <!-- /container -->
+      </div> <!-- /container -->
 
 
     <!-- Bootstrap core JavaScript
