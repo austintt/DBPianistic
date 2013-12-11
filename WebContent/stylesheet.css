@@ -26,7 +26,7 @@ border-color: #3c3c3c;
 
  .search {
  	float: left;
- 	margin-right:11%;
+ 	margin-right:6%;
  	margin-bottom: 1em;
  }
 
@@ -49,4 +49,12 @@ border-color: #3c3c3c;
 
  input, label {
     display:block;
+}
+
+.input-large {
+	width:145px;
+	height: 35px;
+	border-radius: 0px;
+	line-height: 30px;
+	border-color: lightgrey;
 }
