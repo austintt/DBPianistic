@@ -17,9 +17,13 @@ border-color: #3c3c3c;
 }
 
 .panel-primary {
-border-color: #3c3c3c;
+border-color: #dddddd;
 }
  
+ .panel {
+	border-color: #dddddd;
+ }
+
  .pianos {
  	
  }
@@ -67,9 +71,15 @@ border-color: #3c3c3c;
 
 .notes
 {
-	height: 50px;
+	height: 150px;
 	max-height: 300px;
 	overflow: scroll;
+}
+
+.note {
+	padding: 10px;
+	border-color: #dddddd;
+	box-shadow: 2px 2px 3px #888888;
 }
 
 .addButton {
@@ -84,4 +94,11 @@ border-color: #3c3c3c;
 
 .addButton:hover{
 	background-color: #222;
+}
+
+.deleteButton {
+	text-align: center;
+	margin-left:auto; 
+	margin-right:auto;
+	margin-bottom: 1em;
 }

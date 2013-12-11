@@ -138,14 +138,14 @@
               </table>
       </div>
     </div>
-    <div class="col-lg-5">
-    <div class="panel panel-primary">
+    <div class="col-lg-6">
+    <div style="margin-left:10px" class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title"><i class="fa fa-clock-o"></i>Notes</h3>
       </div>
       <div class="panel-body">
-        <div class="list-group">
-          <div class="notes panel" ng-repeat="event in currentPiano.eventData  | orderBy:'dateOfService'">
+        <div class="list-group notes">
+          <div class="note panel" ng-repeat="event in currentPiano.eventData  | orderBy:'dateOfService'">
             {{event.futureServiceNotes}}
           </div>
         </div>
@@ -153,8 +153,9 @@
     </div>
   </div>
   </div>
-
+  </div>
 </div>
+  <hr>
 
 <!--
       <h2> Get Piano Info </h2>
@@ -165,6 +166,9 @@
 		> Condition : <span id="Condition1"></span> <br>
 -->
     </div> <!-- /container -->
+    <div class="deleteButton">
+      <button type="button" action="" class="deleteButton btn btn-warning">Delete Piano</button>
+    </div>
 
 
     <!-- Bootstrap core JavaScript
