@@ -64,6 +64,24 @@ var getInfo = function()
 	});
 };
 
+// // this is the id of the form
+// $("#sbumitPiano").submit(function() {
+
+//     var url = "http://localhost:8080/DBPianistic2/DBServlet"; // the script where you handle the form input.
+
+//     $.ajax({
+//            type: "POST",
+//            url: url,
+//            data: $("#submitPiano").serialize(), // serializes the form's elements.
+//            success: function(data)
+//            {
+//                alert(data); // show response from the php script.
+//            }
+//          });
+
+//     return false; // avoid to execute the actual submit of the form.
+// });
+
 function dbController($scope)
 {
   $scope.currentPiano = localCache().get("currentP", "object");
@@ -83,6 +101,11 @@ function dbController($scope)
     localCache().save("currentP", selectedPiano);
   };
 
+  $scope.deletePiano = function(id)
+  {
+    confirm("Are you sure you want to delete this piano?");
+  };
+
   loadPiano = function()
   {
       // console.log($scope.currentPiano.year);
@@ -96,7 +119,9 @@ function dbController($scope)
       {
         $scope.pic = "assets/Yamaha-upright-piano.jpg";
       }
-  }
-}
+  };
+};
+
+
 
 	
