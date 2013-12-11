@@ -71,6 +71,7 @@ function dbController($scope)
   console.log($scope.pianos);
   $scope.test = "hey!";
   $scope.numPianos = $scope.pianos.length;
+  $scope.pic = "assets/Yamaha-upright-piano.jpg"
 
   $scope.openPage = function(selectedPiano)
   {
@@ -91,6 +92,10 @@ function dbController($scope)
       console.log($scope.currentPiano);
        // $scope.currentPiano = localCache().get("currentP", "object");
       // console.log($scope.currentPiano.year);
+      if (cp.type="Upright" || cp.type="upright")
+      {
+        $scope.pic = "assets/Yamaha-upright-piano.jpg";
+      }
   }
 }
 

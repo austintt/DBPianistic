@@ -69,6 +69,48 @@
 
       <h1 class="numPianos">  {{numPianos}} pianos! </h1>
 
+      <form action="">
+        <div class="searchBox">
+          <div class="search">
+            <label>ID: </label>
+            <input type="text" placeholder="First name" ng-model="search.byui_piano_id">
+          </div>
+          <div class="search">
+            <label>Type: </label>
+            <input type="text" ng-model="search.type_text">
+          </div>
+          <div class="search">
+            <label>Make: </label>
+            <input type="text" ng-model="search.make_name">
+          </div>
+          <div class="search">
+            <label>Model: </label>
+            <input type="text" ng-model="search.model_name">
+          </div>
+        </div>
+          <br>
+        <div class="searchBox">
+          <div class="search">
+            <label>Year: </label>
+            <input type="text" ng-model="search.year">
+          </div>
+          <div class="search">
+            <label>Age: </label>
+            <input type="text" ng-model="search.age">
+          </div>
+          <div class="search">
+            <label>Condition: </label>
+            <input type="text" ng-model="search.condition_text">
+          </div>
+          <div class="search">
+            <label>Serial: </label>
+            <input type="text" ng-model="search.mfg_serial">
+          </div>
+        </div>
+      </form>
+
+
+
       </div> <!-- /container -->
 
 
