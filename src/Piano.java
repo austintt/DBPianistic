@@ -30,7 +30,8 @@ public class Piano
 			int pRoom_number,
 			String pRoom_type_text,
 			int pCondition_text,
-			float pCost, List pEventData)
+			float pCost, 
+			List<Event> pEventData)
 	{
 		byui_piano_id  				= pByui_piano_id;
 		make_name 					= pMake_name;

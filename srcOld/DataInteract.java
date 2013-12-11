@@ -957,7 +957,6 @@ public class DataInteract
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 			List<Piano> pianoData = new ArrayList<Piano>();
-			List<Event> eventData = new ArrayList<Event>();
 
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery( "SELECT p.byui_piano_id "
@@ -1009,8 +1008,6 @@ public class DataInteract
 				System.out.println( "cost = " + cost );         
 				System.out.println();
 
-				eventData = (individualPianoServiceHistoryQuery(byui_piano_id));//call function
-				
 				pianoData.add(new Piano(byui_piano_id, make_name,
 				model_name,     
 				type_text,      
@@ -1021,7 +1018,7 @@ public class DataInteract
 				room_number,      
 				room_type_text, 
 				condition_text,   
-				cost, eventData));
+				cost));
 
 			
 			}
@@ -1105,88 +1102,6 @@ public class DataInteract
 		}
 		System.out.println("Operation done successfully");
 	}	
-
-	public List<Event> individualPianoServiceHistoryQuery(int pByuiPianoId)
-	{
-		Connection c = null;
-		Statement stmt = null;
-		List<Event> eventData = new ArrayList<Event>();
-		try 
-		{
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection(dataSource);
-			c.setAutoCommit(false);
-			System.out.println("Opened database successfully");
-
-			stmt = c.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT psh.byui_piano_id "
-					                       + ",      psh.date_of_service "
-					                       + ",      psh.action_performed "
-					                       + ",      psh.service_notes "
-					                       + ",      psh.next_service_date "
-					                       + ",      psh.action_performed_by "
-					                       + ",      psh.future_service_notes "
-					                       + ",      b.building_name "
-					                       + ",      psh.previous_room_if_moved "
-					                       + ",      psh.current_relative_humidity "
-					                       + ",      psh.current_relative_temperature "
-					                       + "FROM piano_service_history psh "
-					                       + "LEFT OUTER JOIN building b ON psh.previous_building_if_moved = b.byui_building_id "
-					                       + "LEFT OUTER JOIN piano p ON psh.byui_piano_id = p.byui_piano_id WHERE psh.byui_piano_id = " + pByuiPianoId + ";");
-			
-			while (rs.next())
-			{
-				int byui_piano_id                 = rs.getInt("byui_piano_id");
-				String date_of_service            = rs.getString("date_of_service");
-				String action_performed           = rs.getString("action_performed");
-				String service_notes              = rs.getString("service_notes");
-				String next_service_date          = rs.getString("next_service_date");
-				String action_performed_by        = rs.getString("action_performed_by");
-				String future_service_notes       = rs.getString("future_service_notes");
-				String previous_building_if_moved = rs.getString("building_name");
-				String previous_room_if_moved     = rs.getString("previous_room_if_moved");
-				int current_relative_humidity     = rs.getInt("current_relative_humidity");
-				int current_relative_temperature  = rs.getInt("current_relative_temperature");
-
-				System.out.println( "byui_piano_id = "                + byui_piano_id );
-				System.out.println( "date_of_service = "              + date_of_service );
-				System.out.println( "action_performed = "             + action_performed );
-				System.out.println( "service_notes = "                + service_notes );
-				System.out.println( "next_service_date = "            + next_service_date );
-				System.out.println( "action_performed_by = "          + action_performed_by );
-				System.out.println( "future_service_notes = "         + future_service_notes );
-				System.out.println( "previous_building_if_moved = "   + previous_building_if_moved );
-				System.out.println( "previous_room_if_moved = "       + previous_room_if_moved );
-				System.out.println( "current_relative_humidity = "    + current_relative_humidity );
-				System.out.println( "current_relative_temperature = " + current_relative_temperature );  
-				System.out.println();
-				
-				Event pianoEvent = new Event(date_of_service, action_performed, service_notes,
-						                     next_service_date, action_performed_by, future_service_notes,
-						                     previous_building_if_moved, previous_room_if_moved,
-						                     current_relative_humidity, current_relative_temperature);
-				
-				eventData.add(pianoEvent);
-
-			
-			}
-
-
-		rs.close();
-		stmt.close();
-		c.close();
-		return eventData;
-			
-		}
-		catch (Exception e) 
-		{
-			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-			System.exit(0);
-		}
-		System.out.println("Operation done successfully");
-		return null;
-	}
-	
 
 	public List<Piano> theBigDump()
 	{
@@ -1286,13 +1201,13 @@ public class DataInteract
 				
 				System.out.println();
 
-//				pianoData.add(new Piano(piano_sk, byui_piano_id, make_id, model_id, 
-//						                type_id, mfg_serial, year, building_id, room_number, 
-//						                room_type_id, condition_id, cost, date_of_service,
-//						                action_performed, service_notes, action_performed_by,
-//						                future_service_notes, previous_building_if_moved,
-//						                previous_room_if_moved, current_relative_temperature,
-//						                current_relative_humidity));
+				pianoData.add(new Piano(piano_sk, byui_piano_id, make_id, model_id, 
+						                type_id, mfg_serial, year, building_id, room_number, 
+						                room_type_id, condition_id, cost, date_of_service,
+						                action_performed, service_notes, action_performed_by,
+						                future_service_notes, previous_building_if_moved,
+						                previous_room_if_moved, current_relative_temperature,
+						                current_relative_humidity));
 
 			
 			}
@@ -1597,9 +1512,24 @@ public class DataInteract
 				int condition_id  = rs.getInt("condition_id");
 				float cost        = rs.getFloat("cost");
 
-//				pianoData.add(new Piano(piano_sk, byui_piano_id, make_id, model_id, 
-//						type_id, mfg_serial, year, building_id, room_number, 
-//						room_type_id, condition_id, cost));
+				// pianoData.add(new Piano(piano_sk, byui_piano_id, make_id, model_id, 
+				// 		type_id, mfg_serial, year, building_id, room_number, 
+				// 		room_type_id, condition_id, cost));
+
+				System.out.println( "piano_sk = " + piano_sk );
++				System.out.println( "byui_piano_id = " + byui_piano_id );
++				System.out.println( "make_id = " + make_id );
++				System.out.println( "model_id = " + model_id );
++				System.out.println( "type_id = " + type_id );
++				System.out.println( "mfg_serial = " + mfg_serial );
++				System.out.println( "year = " + year );
++				System.out.println( "age = " + age );
++				System.out.println( "building_id = " + building_id );
++				System.out.println( "room_number = " + room_number );
++				System.out.println( "room_type_id = " + room_type_id );
++				System.out.println( "condition_id = " + condition_id );
++				System.out.println( "cost = " + cost );         
++				System.out.println();
 				
 			}
 			
@@ -1618,213 +1548,9 @@ public class DataInteract
 		return null;
 	}
 
-	/**
-	 * DESC: Get's a list of possible piano makes from the piano_make table in the data base
-	 * 
-	 *
-	 */
-	public void getPianoMakeList()
-	{
-		Connection c = null;
-		Statement stmt = null;
-		try 
-		{
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection(dataSource);
-			c.setAutoCommit(false);
-			
-			stmt = c.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT make_name FROM piano_make;");
-			while (rs.next())
-			{
-				String make_name = rs.getString("make_name");
-				
-				System.out.println(make_name);
-			}
-			rs.close();
-			stmt.close();
-			c.close();
-		} 
-		catch (Exception e) 
-		{
-			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-			System.exit(0);
-		}
-	}
-
-	/**
-	 * DESC: Get's a list of possible piano models from the piano_model table in the data base
-	 * 
-	 *
-	 */
-	public void getPianoModelList()
-	{
-		Connection c = null;
-		Statement stmt = null;
-		try 
-		{
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection(dataSource);
-			c.setAutoCommit(false);
-			
-			stmt = c.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT model_name FROM piano_model;");
-			while (rs.next())
-			{
-				String model_name = rs.getString("model_name");
-				
-				System.out.println(model_name);
-			}
-			rs.close();
-			stmt.close();
-			c.close();
-		} 
-		catch (Exception e) 
-		{
-			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-			System.exit(0);
-		}
-	}
-
-	/**
-	 * DESC: Get's a list of possible piano types from the piano_type table in the data base
-	 * 
-	 *
-	 */
-	public void getPianoTypeList()
-	{
-		Connection c = null;
-		Statement stmt = null;
-		try 
-		{
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection(dataSource);
-			c.setAutoCommit(false);
-			
-			stmt = c.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT type_text FROM piano_type;");
-			while (rs.next())
-			{
-				String type_text = rs.getString("type_text");
-				
-				System.out.println(type_text);
-			}
-			rs.close();
-			stmt.close();
-			c.close();
-		} 
-		catch (Exception e) 
-		{
-			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-			System.exit(0);
-		}
-	}
-
-	/**
-	 * DESC: Get's a list of possible room types from the room_type table in the data base
-	 * 
-	 *
-	 */
-	public void getRoomTypeList()
-	{
-		Connection c = null;
-		Statement stmt = null;
-		try 
-		{
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection(dataSource);
-			c.setAutoCommit(false);
-			
-			stmt = c.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT room_type_text FROM room_type;");
-			while (rs.next())
-			{
-				String room_type_text = rs.getString("room_type_text");
-				
-				System.out.println(room_type_text);
-			}
-			rs.close();
-			stmt.close();
-			c.close();
-		} 
-		catch (Exception e) 
-		{
-			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-			System.exit(0);
-		}
-	}
-	
-	
-	/**
-	 * DESC: Get's a list of possible piano conditions from the piano_condition table in the data base
-	 * 
-	 *
-	 */
-	public void getPianoConditionList()
-	{
-		Connection c = null;
-		Statement stmt = null;
-		try 
-		{
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection(dataSource);
-			c.setAutoCommit(false);
-			
-			stmt = c.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT condition_text FROM piano_condition;");
-			while (rs.next())
-			{
-				String condition_text = rs.getString("condition_text");
-				
-				System.out.println(condition_text);
-			}
-			rs.close();
-			stmt.close();
-			c.close();
-		} 
-		catch (Exception e) 
-		{
-			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-			System.exit(0);
-		}
-	}
-
-	/**
-	 * DESC: Get's a list of buildings from the building table in the data base
-	 * 
-	 *
-	 */
-	public void getBuildingList()
-	{
-		Connection c = null;
-		Statement stmt = null;
-		try 
-		{
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection(dataSource);
-			c.setAutoCommit(false);
-			
-			stmt = c.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT building_name FROM building;");
-			while (rs.next())
-			{
-				String building_name = rs.getString("building_name");
-				
-				System.out.println(building_name);
-			}
-			rs.close();
-			stmt.close();
-			c.close();
-		} 
-		catch (Exception e) 
-		{
-			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-			System.exit(0);
-		}
-	}
 	public static void main(String args[])
 	{
-//		DataInteract dataInt = new DataInteract(); 
+		DataInteract dataInt = new DataInteract(); 
 
 		//dataInt.insertPiano(43250, 1, 1, 1, "'A80200'", 2002, 21, 120, 3, 2, 1500.0f);
 		//dataInt.insertPianoServiceHistory(43250, "'2013-11-30 13:00:00'", "'Pedel Change'", "'Piano seemed out of tune, needs tuning'", "'2013-12-30'", "'Armstrong, Brian'", "'Needs Tuning'", 12, 105, 30, 70);
@@ -1861,13 +1587,6 @@ public class DataInteract
 //		dataInt.queryPianoServiceHistory();
 //		dataInt.pianoServiceHistoryDumpQuery();
 //		dataInt.pianoDumpQuery();
-//		dataInt.theBigDump();
-//		dataInt.getPianoMakeList();
-//		dataInt.getPianoModelList();
-//		dataInt.getPianoTypeList();
-//		dataInt.getRoomTypeList();
-//		dataInt.getPianoConditionList();
-//		dataInt.getBuildingList();
-		
+		dataInt.theBigDump();
 	}
 }
