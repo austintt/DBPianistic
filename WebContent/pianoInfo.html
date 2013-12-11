@@ -78,50 +78,37 @@
     <p><b>Condition:</b> {{currentPiano.condition_text}}</p>
     <p><b>Cost:</b> ${{currentPiano.cost}}</p>
     <p><b>Age:</b> {{currentPiano.age}} years</p>
-
+    <br>
   </div>
   <div class="col-lg-6">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-clock-o"></i>History</h3>
-      </div>
-      <div class="panel-body">
-        <div class="list-group">
-          <a href="#" class="list-group-item">
-            <span class="badge">timeTest</span>
-            <i class="fa fa-calendar"></i> test
-          </a>
-          <a href="#" class="list-group-item">
-            <span class="badge">timeTest</span>
-            <i class="fa fa-comment"></i> test
-          </a>
-          <a href="#" class="list-group-item">
-            <span class="badge">timeTest</span>
-            <i class="fa fa-truck"></i> test
-          </a>
-          <a href="#" class="list-group-item">
-            <span class="badge">timeTest</span>
-            <i class="fa fa-money"></i> test
-          </a>
-          <a href="#" class="list-group-item">
-            <span class="badge">timeTest</span>
-            <i class="fa fa-user"></i> test
-          </a>
-          <a href="#" class="list-group-item">
-            <span class="badge">timeTest</span>
-             <i class="fa fa-check"></i> test
-          </a>
-          <a href="#" class="list-group-item">
-            <span class="badge">timeTest</span>
-            <i class="fa fa-globe"></i> test
-          </a>
-          <a href="#" class="list-group-item">
-            <span class="badge">timeTest</span>
-            <i class="fa fa-check"></i> test
-          </a>
-        </div>
-      </div>
-    </div>
+    <div class="table-responsive tableBox">
+              <table class="table table-bordered table-hover table-striped tablesorter pianos">
+                <div style="background:#3C3C3C" class="panel-heading">
+                  <div style="color:white" class="panel-title">
+                    Service History
+                  </div>
+                </div>
+                <thead>
+                  <tr>
+                    <th>Date </th>
+                    <th>Action Performed</th>
+                    <th>Performed by</th>
+                    <th>Service Note </th>
+                    <th>Next Service Date </th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="event in currentPiano.eventData  | orderBy:'dateOfService'">
+                      <td>{{event.dateOfService}}</td>
+                      <td>{{event.actionPerformed}}</td>
+                      <td>{{event.actionPerformedBy}}</td>
+                      <td>{{event.serviceNote}}</td>
+                      <td>{{nextServiceDate}}</td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
   </div>
 </div>
 
