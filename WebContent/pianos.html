@@ -67,22 +67,43 @@
 
       <div class="col-lg-12">
             <h2>Pianos </span></h2>
-            <div class="table-responsive">
-              <table class="table table-bordered table-hover table-striped tablesorter">
+            <div class="col-lg-12 searchBox">
+              
+                  <div class="search">ID: <input ng-model="search.byui_piano_id"></div>
+                  <div class="search">Type: <input ng-model="search.type_text"></div>
+                  <div class="search">Make: <input ng-model="search.make_name"></div>
+                  <div class="search">Model: <input ng-model="search.model_name"></div>
+                  <div class="search">Year: <input ng-model="search.year"></div>
+                  <div class="search">Age: <input ng-model="search.age"></div>
+                  <div class="search">Condition: <input ng-model="search.condition_text"></div>
+                  <div class="search">Serial: <input ng-model="search.mfg_serial"></div>
+            </div>
+            <div class="table-responsive tableBox">
+              <table class="table table-bordered table-hover table-striped tablesorter pianos">
                 <thead>
                   <tr>
-                    <th>Piano <span class="glyphicon glyphicon-chevron-down"></th>
-                    <th>Type <span class="glyphicon glyphicon-chevron-down"></i></th>
-                    <th>Year <span class="glyphicon glyphicon-chevron-down"></i></th>
-                    <th>Location <span class="glyphicon glyphicon-chevron-down"></i></th>
+                    <th>BYU-I ID <span class="glyphicon glyphicon-chevron-down"></th>
+                    <th>Type <span class="glyphicon glyphicon-chevron-down"></th>
+                    <th>Make <span class="glyphicon glyphicon-chevron-down"></th>
+                    <th>Model <span class="glyphicon glyphicon-chevron-down"></th>
+                    <th>Year <span class="glyphicon glyphicon-chevron-down"></th>
+                    <th>Age <span class="glyphicon glyphicon-chevron-down"></th>
+                    <th>Location <span class="glyphicon glyphicon-chevron-down"></th>
+                    <th>Serial # <span class="glyphicon glyphicon-chevron-down"></th>
+                    <th>Condition <span class="glyphicon glyphicon-chevron-down"></th>
                   </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="piano in pianos | orderBy:'byui_piano_id'" ng-cloak ng-click="openPage(piano)">
+                    <tr ng-repeat="piano in pianos | filter:search | orderBy:'byui_piano_id'" ng-cloak ng-click="openPage(piano)">
                       <td>{{piano.byui_piano_id}}</td>
-                      <td>{{piano.type_text}}</td> 
+                      <td>{{piano.type_text}}</td>
+                      <td>{{piano.make_name}}</td>
+                      <td>{{piano.model_name}}</td>
                       <td>{{piano.year}}</td> 
+                      <td>{{piano.age}}</td>
                       <td>{{piano.building_name}}, {{piano.room_number}}</td>
+                      <td>{{piano.mfg_serial}}</td>
+                      <td>{{piano.condition_text}}</td>
                     </tr>
                 </tbody>
               </table>
