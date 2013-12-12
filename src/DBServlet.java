@@ -53,33 +53,28 @@ public class DBServlet extends HttpServlet {
 		if (cmd.equals("add")) 
 		{
 			//get all parameters
-			String id 		 = request.getParameter("id");
+			int id 		 	 = Integer.parseInt(request.getParameter("id"));
 			String type 	 = request.getParameter("type");
 			String make 	 = request.getParameter("make");
 			String model 	 = request.getParameter("model");
 			String serial 	 = request.getParameter("serial");
-			String year 	 = request.getParameter("year");
+			int year 	     = Integer.parseInt(request.getParameter("year"));
 			String building  = request.getParameter("building");
-			String room 	 = request.getParameter("room");
+			int room 	 	 = Integer.parseInt(request.getParameter("room"));
 			String roomType  = request.getParameter("roomType");
 			String condition = request.getParameter("condition");
-			String cost 	 = request.getParameter("cost");
+			float cost 	 = Integer.parseInt(request.getParameter("cost"));
 
 			//add to database
 			DataInteract interact = new DataInteract();
 			
-			id(int);
-			year(int);
-			room(int);
-			cost(float);
-			
-			interact.insertPiano(id, make, model, type, serial, year, building, room, roomType, condition, cost)
+			interact.insertPiano(id, make, model, type, serial, year, building, room, roomType, condition, cost);
 			
 		}
 		else if (cmd.equals("delete"))
 		{
 			String id = request.getParameter("id");
-			returnData.println(id);
+			returnData.println(cmd + id);
 		}
 		else
 		{

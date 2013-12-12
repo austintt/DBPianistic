@@ -40,7 +40,7 @@ public class DataInteract
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:resource:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 			stmt = c.createStatement();

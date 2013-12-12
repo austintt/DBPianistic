@@ -19,7 +19,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js"></script>
     
 </head>
-  <body ng-controller="dbController">
+  <body onload="getInfo()" ng-controller="dbController">
     <div class="container">
       <!-- Static navbar -->
       <div class="navbar navbar-default" role="navigation">
@@ -167,10 +167,13 @@
                   success: function (data) {
                       alert('ok');
                       console.log(data);
+                       ev.preventDefault();
+                        sleep(500);
+                        window.open("addPiano.html","_self");
               }
           });
 
-              ev.preventDefault();
+          
           });
         </script>
       <!--
