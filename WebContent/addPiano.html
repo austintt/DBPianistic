@@ -79,6 +79,7 @@
             <form id="submitPiano" name="submitPiano" action="http://localhost:8080/DBPianistic2/DBServlet" method="post">
               <div class="searchBox">
                 <div class="search">
+                  <input type="hidden" name="cmd" value="add">
                   <label>BYUI-ID: </label>
                   <input type="text" name="id" placeholder="11271989">
                 </div>
@@ -96,7 +97,7 @@
                 </div>
                 <div class="search">
                   <label>Serial #: </label>
-                  <input type="text" name="serial" placeholder="Yamaha">
+                  <input type="text" name="serial" placeholder="24609">
                 </div>
               </div>
 
@@ -158,8 +159,9 @@
                   data: frm.serialize(),
                   success: function (data) {
                       alert('ok');
-                  }
-              });
+                      console.log(data);
+              }
+          });
 
               ev.preventDefault();
           });
