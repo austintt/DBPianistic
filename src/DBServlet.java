@@ -65,7 +65,10 @@ public class DBServlet extends HttpServlet {
 			String condition = request.getParameter("condition");
 			String cost 	 = request.getParameter("cost");
 
-			returnData.println(id + " " + type + " " + make + " " + model + " " + serial);
+			//add to database
+			DataInteract interact = new DataInteract();
+
+			
 		}
 		else if (cmd.equals("delete"))
 		{
