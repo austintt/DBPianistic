@@ -49,22 +49,27 @@ public class DBServlet extends HttpServlet {
 		String cmd = request.getParameter("cmd");
 	
 
-		//addpiano
+		//add piano
 		if (cmd.equals("add")) 
 		{
 			//get all parameters
-			String id 		= request.getParameter("id");
-			String type 	= request.getParameter("type");
-			String make 	= request.getParameter("make");
-			String model 	= request.getParameter("model");
-			String serial 	= request.getParameter("serial");
-			String year 	= request.getParameter("year");
-			String building = request.getParameter("building");
-			String room 	= request.getParameter("room");
-			String roomType = request.getParameter("roomType");
+			String id 		 = request.getParameter("id");
+			String type 	 = request.getParameter("type");
+			String make 	 = request.getParameter("make");
+			String model 	 = request.getParameter("model");
+			String serial 	 = request.getParameter("serial");
+			String year 	 = request.getParameter("year");
+			String building  = request.getParameter("building");
+			String room 	 = request.getParameter("room");
+			String roomType  = request.getParameter("roomType");
 			String condition = request.getParameter("condition");
 
 			returnData.println(id + " " + type + " " + make + " " + model + " " + serial);
+		}
+		else if (cmd.equals("delete"))
+		{
+			String id = request.getParameter("id");
+			returnData.println(id);
 		}
 		else
 		{

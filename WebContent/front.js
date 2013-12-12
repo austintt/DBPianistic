@@ -115,10 +115,10 @@ function dbController($scope)
       console.log($scope.currentPiano);
        // $scope.currentPiano = localCache().get("currentP", "object");
       // console.log($scope.currentPiano.year);
-      if (cp.type="Upright" || cp.type="upright")
-      {
-        $scope.pic = "assets/Yamaha-upright-piano.jpg";
-      }
+      // if (cp.type="Upright" || cp.type="upright")
+      // {
+      //   $scope.pic = "assets/Yamaha-upright-piano.jpg";
+      // }
   };
 };
 
