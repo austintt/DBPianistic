@@ -63,6 +63,7 @@ public class DBServlet extends HttpServlet {
 			String room 	 = request.getParameter("room");
 			String roomType  = request.getParameter("roomType");
 			String condition = request.getParameter("condition");
+			String cost 	 = request.getParameter("cost");
 
 			returnData.println(id + " " + type + " " + make + " " + model + " " + serial);
 		}
