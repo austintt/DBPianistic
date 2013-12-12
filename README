@@ -1,0 +1,13 @@
+
+                                    dbPianistic
+dbPianistic is a full, front and back-end web application. It is designed to be deployed on a Tomcat server running Java and SQLite.
+
++++++++++
+Backend
++++++++++
+All code for the backend is located in the ‘src’ and ‘resource’ folders. The src contains the Java servlet and classes that utilize AJAX requests and talk to the database. The SQLite database lives in the resource folder.
+
++++++++++
+Frontend
++++++++++
+All frontend html, js, and css lives in the WebContent folder. JQuery and AngularJS are the two major frameworks we use along with Bootstrap 3.
