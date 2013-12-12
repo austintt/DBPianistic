@@ -27,6 +27,14 @@ public class DataInteract
 						    String pBuildingName, int pRoomNumber, 
 						    String pRoomType, String pPianoCondition, float pCost)
 	{
+
+		this.insertPianoMake(pPianoMake);
+		this.insertPianoModel(pPianoModel);
+		this.insertPianoType(pPianoType);
+		this.insertBuilding(pBuildingName);
+		this.insertRoomType(pRoomType);
+		this.insertPianoCondition(pPianoCondition);
+		
 		Connection c = null;
 		Statement stmt = null;
 		try 
@@ -312,7 +320,7 @@ public class DataInteract
 			stmt = c.createStatement();
 
 			String sql = "INSERT INTO piano_type (type_text)"
-					+    "VALUES (" + pPianoTypeText + ");";
+					+    "VALUES ( ifnull( (SELECT type_text FROM piano_type WHERE type_text = '" + pPianoTypeText + "'), '" + pPianoTypeText + "') );";
 			System.out.println("About to execute statement: " + sql);
 
 			stmt.executeUpdate(sql);
@@ -423,7 +431,7 @@ public class DataInteract
 			stmt = c.createStatement();
 
 			String sql = "INSERT INTO piano_model (model_name)"
-					+    "VALUES (" + pPianoModelName + ");";
+					+    "VALUES ( ifnull( (SELECT model_name FROM piano_model WHERE model_name = '" + pPianoModelName + "'), '" + pPianoModelName + "') );";
 			System.out.println("About to execute statement: " + sql);
 
 			stmt.executeUpdate(sql);
@@ -533,7 +541,7 @@ public class DataInteract
 			stmt = c.createStatement();
 
 			String sql = "INSERT INTO piano_make (make_name)"
-					+    "VALUES (" + pPianoMakeName + ");";
+					+    "VALUES ( ifnull( (SELECT make_name FROM piano_make WHERE make_name = '" + pPianoMakeName + "'), '" + pPianoMakeName + "') );";
 			System.out.println("About to execute statement: " + sql);
 
 			stmt.executeUpdate(sql);
@@ -642,7 +650,7 @@ public class DataInteract
 			stmt = c.createStatement();
 
 			String sql = "INSERT INTO piano_condition (condition_text)"
-					+    "VALUES (" + pPianoCondition + ");";
+					+    "VALUES ( ifnull( (SELECT condition_text FROM piano_condition WHERE condition_text = '" + pPianoCondition + "'), '" + pPianoCondition + "') );";
 			System.out.println("About to execute statement: " + sql);
 
 			stmt.executeUpdate(sql);
@@ -752,7 +760,7 @@ public class DataInteract
 			stmt = c.createStatement();
 
 			String sql = "INSERT INTO building (building_name)"
-					+    "VALUES (" + pBuildingName + ");";
+					+    "VALUES ( ifnull( (SELECT building_name FROM building WHERE building_name = '" + pBuildingName + "'), '" + pBuildingName + "') );";
 			System.out.println("About to execute statement: " + sql);
 
 			stmt.executeUpdate(sql);
@@ -860,7 +868,7 @@ public class DataInteract
 			stmt = c.createStatement();
 
 			String sql = "INSERT INTO room_type (room_type_text)"
-					+    "VALUES (" + pRoomType + ");";
+					+    "VALUES ( ifnull( (SELECT room_type_text FROM room_type WHERE room_type_text = '" + pRoomType + "'), '" + pRoomType + "') );";
 			System.out.println("About to execute statement: " + sql);
 
 			stmt.executeUpdate(sql);
