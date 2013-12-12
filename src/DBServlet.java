@@ -67,7 +67,13 @@ public class DBServlet extends HttpServlet {
 
 			//add to database
 			DataInteract interact = new DataInteract();
-
+			
+			id(int);
+			year(int);
+			room(int);
+			cost(float);
+			
+			interact.insertPiano(id, make, model, type, serial, year, building, room, roomType, condition, cost)
 			
 		}
 		else if (cmd.equals("delete"))
