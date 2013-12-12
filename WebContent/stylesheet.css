@@ -102,3 +102,7 @@ border-color: #dddddd;
 	margin-right:auto;
 	margin-bottom: 1em;
 }
+
+.modal-body {
+	color: black;
+}
