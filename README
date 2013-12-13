@@ -1,5 +1,6 @@
 
                                     dbPianistic
+This program is designed to aid in the tracking and maintaining of pianos on the BYU-I campus. 
 dbPianistic is a full, front and back-end web application. It is designed to be deployed on a Tomcat server running Java and SQLite.
 
 +++++++++
