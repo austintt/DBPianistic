@@ -1613,9 +1613,20 @@ public class DataInteract
 				int condition_id  = rs.getInt("condition_id");
 				float cost        = rs.getFloat("cost");
 
-//				pianoData.add(new Piano(piano_sk, byui_piano_id, make_id, model_id, 
-//						type_id, mfg_serial, year, building_id, room_number, 
-//						room_type_id, condition_id, cost));
+
+				System.out.println( "piano_sk = " + piano_sk );
+								System.out.println( "byui_piano_id = " + byui_piano_id );
+								System.out.println( "make_id = " + make_id );
+								System.out.println( "model_id = " + model_id );
+								System.out.println( "type_id = " + type_id );
+								System.out.println( "mfg_serial = " + mfg_serial );
+								System.out.println( "year = " + year );
+								System.out.println( "building_id = " + building_id );
+								System.out.println( "room_number = " + room_number );
+								System.out.println( "room_type_id = " + room_type_id );
+								System.out.println( "condition_id = " + condition_id );
+								System.out.println( "cost = " + cost );         
+								System.out.println();
 				
 			}
 			
