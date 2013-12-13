@@ -1,4 +1,10 @@
-
+///////////////////////////////////////////////////////
+// 					dbPianistic
+//	Authors:
+//				Austin Tooley - Tooley7@gmail.com
+//				Brian Armstrong
+//				Kenneth Heyen
+////////////////////////////////////////////////////////
 
 import java.io.IOException;
 import com.google.gson.*;

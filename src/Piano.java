@@ -1,3 +1,11 @@
+///////////////////////////////////////////////////////
+// 					dbPianistic
+//	Authors:
+//				Austin Tooley - Tooley7@gmail.com
+//				Brian Armstrong
+//				Kenneth Heyen
+////////////////////////////////////////////////////////
+
 import java.util.ArrayList;
 import java.util.List;
 
