@@ -83,6 +83,10 @@ public class DBServlet extends HttpServlet {
 			int id = Integer.parseInt(request.getParameter("id"));
 			interact.deletePiano(id);
 		}
+		else if (cmd.equals("addEvent"))
+		{
+			returnData.println("event!!");
+		}
 		else
 		{
 			returnData.println("Boo");

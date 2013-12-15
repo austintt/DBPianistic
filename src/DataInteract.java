@@ -153,9 +153,10 @@ public class DataInteract
 			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
-
+			System.out.println("we got here 1");
 			stmt = c.createStatement();
 			String sql = "DELETE FROM piano WHERE byui_piano_id = " + byuiPianoId + ";";
+			System.out.println("we got here 2");
 			System.out.println("About to execute statement: " + sql);
 			stmt.executeUpdate(sql);
 			c.commit();
@@ -1591,7 +1592,7 @@ public class DataInteract
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite::resource:test.db");
+			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 			List<Piano> pianoData = new ArrayList<Piano>();

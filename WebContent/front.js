@@ -123,6 +123,7 @@ function dbController($scope)
           data: "cmd=delete&id=" + id,
           success: function (data) {
               console.log(data);
+              window.open("pianos.html","_self");
           }
       });
     };
