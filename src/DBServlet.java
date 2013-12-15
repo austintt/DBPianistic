@@ -50,6 +50,7 @@ public class DBServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/plain");
 		PrintWriter returnData = response.getWriter();
+		DataInteract interact = new DataInteract();
 	
 		//get cmd parameter
 		String cmd = request.getParameter("cmd");
@@ -72,15 +73,15 @@ public class DBServlet extends HttpServlet {
 			float cost 	 = Integer.parseInt(request.getParameter("cost"));
 
 			//add to database
-			DataInteract interact = new DataInteract();
+			
 			
 			interact.insertPiano(id, make, model, type, serial, year, building, room, roomType, condition, cost);
 			
 		}
 		else if (cmd.equals("delete"))
 		{
-			String id = request.getParameter("id");
-			returnData.println(cmd + id);
+			int id = Integer.parseInt(request.getParameter("id"));
+			interact.deletePiano(id);
 		}
 		else
 		{
