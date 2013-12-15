@@ -21,10 +21,9 @@
   <link rel="stylesheet" type="text/css" href="stylesheet.css" />
 	
 	<!--JS-->
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js"></script>
 	<script type="text/javascript" src="front.js"></script>
-<!-- 	// <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
- //  	<script src="bootstrap/js/bootstrap.min.js"></script -->
 
     <script type="text/javascript">
 
@@ -206,36 +205,17 @@
 		> Condition : <span id="Condition1"></span> <br>
 -->
     </div> <!-- /container -->
-    <form id="deletePiano" name="deletePiano" action="http://localhost:8080/DBPianistic2/DBServlet" method="post">
+    <form id="deletePianoForm" name="deletePianoForm" method="post">
       <div class="deleteButton">
-        <button type="button" ngclick="deletePiano({{currentPiano.byui_piano_id}})" class="deleteButton btn btn-danger">Delete Piano</button>
+        <button type="button" ng-click="deletePiano()" class="deleteButton btn btn-danger">Delete Piano</button>
         <input type="hidden" name="cmd" value="delete">
         <input type="hidden" name="id" value="{{currentPiano.byui_piano_id}}">
       </div>
     </form>
-  
-  <script type="text/javascript">
-          var frm = $('#deletePiano');
-          frm.submit(function (ev) {
-              $.ajax({
-                  type: frm.attr('method'),
-                  url: frm.attr('action'),
-                  data: frm.serialize(),
-                  success: function (data) {
-                      alert('ok');
-                      console.log(data);
-              }
-          });
-
-              ev.preventDefault();
-          });
-        </script>
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Page Specific Plugins -->

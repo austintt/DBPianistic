@@ -54,10 +54,12 @@
        };
    };
 
+
 var getInfo = function()
 {	
 	$.getJSON("http://localhost:8080/DBPianistic2/DBServlet", null, function(data, textStatus, xhr){
 //		console.log(data);
+    pianoStorage = data;
 		localCache().save("piano", data);
 		localCache().get("piano", "object");
 		console.log(localCache().get("piano", "object"));
@@ -82,8 +84,14 @@ var getInfo = function()
 //     return false; // avoid to execute the actual submit of the form.
 // });
 
+
+
+
 function dbController($scope)
 {
+  setTimeout(function (){
+    //This is here to make it wait...
+  }, 500);
   $scope.currentPiano = localCache().get("currentP", "object");
   $scope.pianos = localCache().get("piano", "object");
   console.log($scope.pianos);
@@ -101,9 +109,26 @@ function dbController($scope)
     localCache().save("currentP", selectedPiano);
   };
 
-  $scope.deletePiano = function(id)
+  $scope.deletePiano = function()
   {
-    confirm("Are you sure you want to delete this piano?");
+   var confirmed = confirm("Are you sure you want to delete this piano?");
+   var id = $scope.currentPiano.byui_piano_id;
+   console.log(id);
+
+   if (confirmed) 
+    {
+      $.ajax({
+          type: "post",
+          url: "http://localhost:8080/DBPianistic2/DBServlet",
+          data: "cmd=delete&id=" + id,
+          success: function (data) {
+              console.log(data);
+          }
+      });
+    };
+
+
+
   };
 
   loadPiano = function()

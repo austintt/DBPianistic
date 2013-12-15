@@ -13,13 +13,14 @@
     <link rel="stylesheet" type="text/css" href="stylesheet.css" />
   
   <!--JS-->
-  <script type="text/javascript" src="front.js"></script>
-<!--   // <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-  //   <script src="bootstrap/js/bootstrap.min.js"></script> -->
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js"></script>
+  <script type="text/javascript" src="front.js"></script>
+
+
     
 </head>
-  <body onload="getInfo()" ng-controller="dbController">
+  <body ng-controller="dbController">
     <div class="container">
       <!-- Static navbar -->
       <div class="navbar navbar-default" role="navigation">
@@ -160,6 +161,7 @@
         <script type="text/javascript">
           var frm = $('#submitPiano');
           frm.submit(function (ev) {
+              ev.preventDefault();
               $.ajax({
                   type: frm.attr('method'),
                   url: frm.attr('action'),
@@ -167,9 +169,7 @@
                   success: function (data) {
                       alert('ok');
                       console.log(data);
-                       ev.preventDefault();
-                        sleep(500);
-                        window.open("addPiano.html","_self");
+                      window.location.reload();
               }
           });
 
@@ -193,7 +193,6 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
 
 </body>
