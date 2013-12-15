@@ -7,7 +7,9 @@
 ////////////////////////////////////////////////////////
 
 import java.io.IOException;
+
 import com.google.gson.*;
+
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -50,7 +52,7 @@ public class DBServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/plain");
 		PrintWriter returnData = response.getWriter();
-		DataInteract interact = new DataInteract();
+		
 	
 		//get cmd parameter
 		String cmd = request.getParameter("cmd");
@@ -59,6 +61,7 @@ public class DBServlet extends HttpServlet {
 		//add piano
 		if (cmd.equals("add")) 
 		{
+			DataInteract interact = new DataInteract();
 			//get all parameters
 			int id 		 	 = Integer.parseInt(request.getParameter("id"));
 			String type 	 = request.getParameter("type");
@@ -80,19 +83,24 @@ public class DBServlet extends HttpServlet {
 		}
 		else if (cmd.equals("delete"))
 		{
+			DataInteract interact = new DataInteract();
 			int id = Integer.parseInt(request.getParameter("id"));
 			interact.deletePiano(id);
 		}
 		else if (cmd.equals("addEvent"))
-		{
+		{			
+			DataInteract interact = new DataInteract();
 			int id 		 	 = Integer.parseInt(request.getParameter("id"));
 			String service 	 = request.getParameter("service");
+			String date 	 = request.getParameter("date");
 			String user 	 = request.getParameter("user");
 			int temp 		 = Integer.parseInt(request.getParameter("temp"));
 			int humidity  	 = Integer.parseInt(request.getParameter("hum"));
 			String notes 	 = request.getParameter("notes");
 			int cycle 		 	 = Integer.parseInt(request.getParameter("cycle"));
 			returnData.println("event!!");
+			
+			interact.insertPianoServiceHistory(id, date, service, notes, "NULL", user, "NULL", -1, -1, humidity, temp);
 		}
 		else
 		{
