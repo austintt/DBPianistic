@@ -235,6 +235,64 @@ public class DataInteract
 	}
 
 	/**
+	 * DESC: Insert an entry into the piano service history table with only the required fields
+	 * @param pByuiPianoId
+	 * @param pDateOfService
+	 * @param pActionPerformed
+	 * @param pServiceNotes
+	 * @param pActionPerformedBy
+	 * @param pCurrentRelativeHumidity
+	 * @param pCurrentRelativeTemperature
+	 *        
+	 */
+
+	public void insertPianoServiceHistoryAbbreviated(int pByuiPianoId, String pDateOfService, String pActionPerformed, String pServiceNotes, 
+			String pActionPerformedBy, int pCurrentRelativeHumidity, int pCurrentRelativeTemperature)
+	{
+		Connection c = null;
+		Statement stmt = null;
+		try
+		{
+			Class.forName("org.sqlite.JDBC");
+			c = DriverManager.getConnection(dataSource);
+			c.setAutoCommit(false);
+			System.out.println("Opened database successfully");
+
+			stmt = c.createStatement();
+			String sql = "INSERT INTO piano_service_history"
+					   + "( byui_piano_id"
+					   + ", date_of_service"
+					   + ", action_performed"
+					   + ", service_notes"
+					   + ", action_performed_by"
+					   + ", current_relative_humidity"
+					   + ", current_relative_temperature)"
+					   + "VALUES"
+					   + "( " + pByuiPianoId
+					   + ", '" + pDateOfService + "' " 
+					   + ", '" + pActionPerformed + "' "
+					   + ", '" + pServiceNotes + "' "
+					   + ", '" + pActionPerformedBy + "' "
+					   + ", " + pCurrentRelativeHumidity 
+					   + ", " + pCurrentRelativeTemperature + ");";
+
+			System.out.println("About to execute statement: " + sql);
+
+			stmt.executeUpdate(sql);
+			stmt.close();
+			c.commit();
+			c.close();
+		}
+		catch(Exception e)
+		{
+			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+			System.exit(0);
+		}
+		System.out.println("Records created successfully");
+
+	}
+	
+	/**
 	 * DESC: Update an item in the piano table. All parameters must be used and have valid data.
 	 * @param pColumn, pValue, pPrimaryKeyValue
 	 *        

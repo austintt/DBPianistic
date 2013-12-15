@@ -100,7 +100,7 @@ public class DBServlet extends HttpServlet {
 			int cycle 		 	 = Integer.parseInt(request.getParameter("cycle"));
 			returnData.println("event!!");
 			
-			interact.insertPianoServiceHistory(id, date, service, notes, "NULL", user, "NULL", -1, -1, humidity, temp);
+			interact.insertPianoServiceHistory(id, date, service, notes, user, humidity, temp);
 		}
 		else
 		{
