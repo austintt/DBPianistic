@@ -85,6 +85,13 @@ public class DBServlet extends HttpServlet {
 		}
 		else if (cmd.equals("addEvent"))
 		{
+			int id 		 	 = Integer.parseInt(request.getParameter("id"));
+			String service 	 = request.getParameter("service");
+			String user 	 = request.getParameter("user");
+			int temp 		 = Integer.parseInt(request.getParameter("temp"));
+			int humidity  	 = Integer.parseInt(request.getParameter("hum"));
+			String notes 	 = request.getParameter("notes");
+			int cycle 		 	 = Integer.parseInt(request.getParameter("cycle"));
 			returnData.println("event!!");
 		}
 		else

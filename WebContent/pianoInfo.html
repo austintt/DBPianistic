@@ -100,21 +100,22 @@
                           <form name="eventForm" id="eventForm" action="http://localhost:8080/DBPianistic2/DBServlet" method="post">
                           <div class="modal-body">
                             <div class="col-lg-12">
+                              <input type="hidden" name="id" value="{{currentPiano.byui_piano_id}}">
                               <label>Date: </label>
-                              <input type="hidden" value="addEvent">
-                              <input type="text" placeholder="mm/dd/yyyy">
+                              <input type="hidden" name="cmd" value="addEvent">
+                              <input type="text" placeholder="mm/dd/yyyy" required>
                               <label style="margin-top:10px">Action performed: </label>
-                              <input type="text" placeholder="General Service">
+                              <input type="text" name="service" placeholder="General Service" required>
                               <label style="margin-top:10px">Performed by: </label>
-                              <input type="text" placeholder="KH">
+                              <input type="text" name="user" placeholder="KH" required>
                               <label>Temperature: </label>
-                              <input type="text" placeholder="68">
+                              <input type="text" name="temp" placeholder="68">
                               <label>Humidity: </label>
-                              <input type="text" placeholder="50">
+                              <input type="text" name="hum" placeholder="50">
                               <label style="margin-top:10px">Service Notes: </label>
-                              <textarea rows="4" cols="50"></textarea>
+                              <textarea rows="4" name="notes" cols="50"></textarea>
                               <label style="margin-top:10px">Service Cycle (days): </label>
-                              <input type="text" placeholder="90">
+                              <input type="text" name="cycle" placeholder="90">
                             </div>
                           </div>
                           <div class="modal-footer">
