@@ -22,7 +22,7 @@ public class Piano
 	String building_name;  
 	int room_number;      
 	String room_type_text; 
-	int condition_text;    
+	String condition_text;    
 	float cost;
 	
 	List<Event> eventData = new ArrayList<Event>();
