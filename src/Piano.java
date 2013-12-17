@@ -37,7 +37,7 @@ public class Piano
 			String pBuilding_name,
 			int pRoom_number,
 			String pRoom_type_text,
-			int pCondition_text,
+			String pCondition_text,
 			float pCost, 
 			List<Event> pEventData)
 	{
