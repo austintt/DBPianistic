@@ -1067,7 +1067,7 @@ public class DataInteract
 				String building_name  = rs.getString("building_name");
 				int room_number       = rs.getInt("room_number");
 				String room_type_text = rs.getString("room_type_text");
-				int condition_text    = rs.getInt("condition_text");
+				String condition_text = rs.getString("condition_text");
 				float cost            = rs.getFloat("cost");
 
 				System.out.println( "byui_piano_id = " + byui_piano_id );
