@@ -97,7 +97,6 @@ public class DBServlet extends HttpServlet {
 			int temp 		 = Integer.parseInt(request.getParameter("temp"));
 			int humidity  	 = Integer.parseInt(request.getParameter("hum"));
 			String notes 	 = request.getParameter("notes");
-			int cycle 		 	 = Integer.parseInt(request.getParameter("cycle"));
 			returnData.println("event!!");
 			
 			interact.insertPianoServiceHistoryAbbreviated(id, date, service, notes, user, humidity, temp);

@@ -114,8 +114,7 @@
                               <input type="text" name="hum" placeholder="50">
                               <label style="margin-top:10px">Service Notes: </label>
                               <textarea rows="4" name="notes" cols="50"></textarea>
-                              <label style="margin-top:10px">Service Cycle (days): </label>
-                              <input type="text" name="cycle" placeholder="90">
+                    
                             </div>
                           </div>
                           <div class="modal-footer">
@@ -132,7 +131,6 @@
                                   url: frm.attr('action'),
                                   data: frm.serialize(),
                                   success: function (data) {
-                                      alert("ok");
                                       console.log(data);
                                       window.location.reload();
                               }
